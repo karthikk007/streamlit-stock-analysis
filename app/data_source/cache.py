@@ -93,7 +93,6 @@ class StockDataCache(Cache):
 
         cache_data = StockCacheData(symbol, start, end, path)
         print(cache_data.__dict__)
-        # cache_data_dict = json.dumps(cache_data, cls=Encoder)
         cache_data_dict = cache_data.__dict__
 
         if frame is None:
@@ -110,6 +109,7 @@ class StockDataCache(Cache):
 
 
     def save_cache(self):
+        print('[-------------------- save_cache')
         cache_file = self.cache_file()
 
         os.remove(cache_file) if os.path.exists(cache_file) else None
