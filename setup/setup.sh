@@ -1,6 +1,6 @@
 ROOT=${WORKSPACE:-$(git rev-parse --show-toplevel)}
-DIR="$ROOT"
-DIR_VENV="$DIR/venv"
+DIR_APP="$ROOT/setup"
+DIR_VENV="$DIR_APP/venv"
 PYTHON="/usr/local/bin/python3"
 
 
@@ -14,7 +14,7 @@ function setup_venv() {
     echo "=====checking active virtual environment..."
     echo "$VIRTUAL_ENV"
 
-    pip install -r "$DIR/requirements.txt"
+    pip install -r "$DIR_APP/requirements.txt"
 }
 
 setup_venv
