@@ -34,8 +34,8 @@ def show_date_picker():
         start_date = end_date - relativedelta(years=5)
         min_date = end_date - relativedelta(years=20)
 
-        from_date_picker = col1.date_input('From', start_date, min_date, end_date, key='from_date_picker', on_change=did_change_date_picker)
-        to_date_picker = col2.date_input('To', end_date, min_date, end_date, key='to_date_picker', on_change=did_change_date_picker)
+        col1.date_input('From', start_date, min_date, end_date, key='from_date_picker', on_change=did_change_date_picker)
+        col2.date_input('To', end_date, min_date, end_date, key='to_date_picker', on_change=did_change_date_picker)
 
         
 def show_date_range(container):

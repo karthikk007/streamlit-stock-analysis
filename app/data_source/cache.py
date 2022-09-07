@@ -139,8 +139,23 @@ class StockDataCache(Cache):
 
 
     def perform_cache_eviction(self):
-        for items in self.cache.items():
-            print(json.dumps(items, indent=4))
+        self.print_cache_stats()
+
+
+    def print_cache_stats(self):
+        ticker_count = 0
+        objects_count = 0
+        print('\n----------------------------------------')
+        print('cache status')
+        print('----------------------------------------')
+        for key, value in self.cache.items():
+            ticker_count = ticker_count + 1
+            print('{:>16}\t{:>8}'.format(key, len(value)))
+            objects_count = objects_count + len(value)
+
+        print('----------------------------------------')
+        print('\tticker = {}\tobjects = {}'.format(ticker_count, objects_count))
+        print('----------------------------------------\n')
     
       
 
