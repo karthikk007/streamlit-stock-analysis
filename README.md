@@ -5,4 +5,6 @@ streamlit-stock-analysis
 
 ```
 source runw.sh
+
+deactivate
 ```
