@@ -21,8 +21,8 @@ def app():
     
 
 def show_date_picker():
-    global from_date_picker
-    global to_date_picker
+    # global from_date_picker
+    # global to_date_picker
 
     with st.sidebar.container():
         st.markdown("## Insights") # add a title to the sidebar container
@@ -49,8 +49,8 @@ def did_change_date_picker():
     print("did_change_date_picker")
 
 def did_change_date_range():
-    global from_date_picker
-    global to_date_picker
+    # global from_date_picker
+    # global to_date_picker
     val = st.session_state['range_picker']
 
     end_date = datetime.datetime.today()
@@ -89,6 +89,9 @@ def did_change_date_range():
 
 
 def show_stock():
+    from_date_picker = st.session_state['from_date_picker']
+    to_date_picker = st.session_state['to_date_picker']
+    
     start = datetime.datetime(
         year=from_date_picker.year,
         month=from_date_picker.month,
