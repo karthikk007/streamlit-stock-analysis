@@ -6,14 +6,15 @@ from stock_data.stock import Stock
 import datetime
 from dateutil.relativedelta import relativedelta   
 
+APP_NAME = "Stock App!"
 
 def app():
-    st.set_page_config(layout="wide", initial_sidebar_state="expanded")
-    st.title('Stock forecast dashboard')
+    st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
+    st.sidebar.title = APP_NAME
 
     st.markdown("# Main page 🎈")
     st.sidebar.markdown("# Main page 🎈")
-    st.title('Stock forecast dashboard')
+    st.title('Stock forecast dashboard 📈')
     
     show_date_picker()
     show_stock()
@@ -99,8 +100,8 @@ def show_stock():
         day=to_date_picker.day
     ) 
 
-    stock = Stock(symbol='ITC.NS', start=start, end=end)
-    # stock = Stock(symbol='TCS.NS', start=start, end=end)
+    # stock = Stock(symbol='ITC.NS', start=start, end=end)
+    stock = Stock(symbol='TCS.NS', start=start, end=end)
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):

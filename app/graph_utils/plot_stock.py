@@ -43,7 +43,6 @@ def plot_stock_close(fig, df, name):
                     font=dict(size=12),
                 ),
                 autosize=False,
-                template="plotly_dark",
     )
 
     return fig
