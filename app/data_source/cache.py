@@ -70,7 +70,6 @@ class StockDataCache(Cache):
         cache_data = None
 
         if value is not None:
-            print('value', value)
             cache_data = StockCacheData.from_json(value)
 
         if cache_data is None or not os.path.exists(cache_data.path):
@@ -92,7 +91,6 @@ class StockDataCache(Cache):
         frame = self.cache.get(symbol)
 
         cache_data = StockCacheData(symbol, start, end, path)
-        print(cache_data.__dict__)
         cache_data_dict = cache_data.__dict__
 
         if frame is None:
@@ -100,10 +98,7 @@ class StockDataCache(Cache):
         else:
             frame[key] = cache_data_dict
 
-        # print(json.dumps(frame, indent=4))
         self.cache[symbol] = frame
-
-        # print(self.dict.keys())
 
         self.save_cache()
 
@@ -118,7 +113,6 @@ class StockDataCache(Cache):
             json.dump(self.cache, f, indent=4, cls=Encoder)
             # pickle.dump(self.cache, f)
 
-        print('save_cache')
         print(self.cache.keys())
 
     def load_cache(self):
@@ -178,10 +172,10 @@ class StockCacheData(CacheData):
     @staticmethod
     def from_json(dict):
         symbol = dict['symbol']
-        print('start = ', dict['end'], type(dict['end']))
         start = dict['start']
         end = dict['end']
         path = dict['path']
+
         return StockCacheData(symbol, start, end, path)
 
 
