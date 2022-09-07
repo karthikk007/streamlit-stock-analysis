@@ -4,7 +4,7 @@ streamlit-stock-analysis
 # instructions
 
 ```
-python3.8 -m venv env
+python3 -m venv env
 
 source env/bin/activate
 
