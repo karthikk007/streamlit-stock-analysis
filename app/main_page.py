@@ -1,7 +1,7 @@
 # Contents of ~/my_app/main_page.py
 
 import streamlit as st
-import plotly.graph_objects as go
+
 from stock_data.stock import Stock
 import datetime
 from dateutil.relativedelta import relativedelta   
@@ -21,9 +21,6 @@ def app():
     
 
 def show_date_picker():
-    # global from_date_picker
-    # global to_date_picker
-
     with st.sidebar.container():
         st.markdown("## Insights") # add a title to the sidebar container
         con1 = st.sidebar.container()
@@ -49,8 +46,6 @@ def did_change_date_picker():
     print("did_change_date_picker")
 
 def did_change_date_range():
-    # global from_date_picker
-    # global to_date_picker
     val = st.session_state['range_picker']
 
     end_date = datetime.datetime.today()
@@ -91,7 +86,7 @@ def did_change_date_range():
 def show_stock():
     from_date_picker = st.session_state['from_date_picker']
     to_date_picker = st.session_state['to_date_picker']
-    
+
     start = datetime.datetime(
         year=from_date_picker.year,
         month=from_date_picker.month,
@@ -104,17 +99,15 @@ def show_stock():
     ) 
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
-    stock = Stock(symbol='TCS.NS', start=start, end=end)
-    # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
+    # stock = Stock(symbol='TCS.NS', start=start, end=end)
+    stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):
         stock.load_data()
     st.success('Data Loaded.')
 
     # # # ------------------------Plot stock linechart--------------------
-    fig=go.Figure()
-
-    fig = stock.plot_raw_data(fig)
+    fig = stock.plot_raw_data()
 
     st.write(fig)
 

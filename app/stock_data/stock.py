@@ -1,13 +1,9 @@
-import yfinance as yf
 import datetime
 import streamlit as st
 import plotly.graph_objects as go
 
 from graph_utils import plot_stock
 from data_source.data_fetcher import StockDataFetcher
-
-import plotly.express as px
-import pandas as pd
 
 data_fetcher = StockDataFetcher()
 
@@ -37,7 +33,8 @@ class Stock():
 
         return data
 
-    def plot_raw_data(self, fig):
+    def plot_raw_data(self):
+        fig = go.Figure()
         return plot_stock.plot_stock_close(fig, self.data, self.symbol)
 
     @staticmethod
