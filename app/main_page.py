@@ -4,7 +4,7 @@ import streamlit as st
 
 from stock_data.stock import Stock
 import datetime
-from dateutil.relativedelta import relativedelta   
+from dateutil.relativedelta import relativedelta
 
 APP_NAME = "Stock App!"
 
@@ -12,9 +12,9 @@ def app():
     st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
     st.sidebar.title = APP_NAME
 
-    st.markdown("# Main page 🎈")
+    st.markdown("# 🎈 Stock forecast dashboard 📈")
     st.sidebar.markdown("# Main page 🎈")
-    st.title('Stock forecast dashboard 📈')
+    st.title('')
     
     show_date_picker()
     show_stock()
@@ -99,8 +99,8 @@ def show_stock():
     ) 
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
-    # stock = Stock(symbol='TCS.NS', start=start, end=end)
-    stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
+    stock = Stock(symbol='TCS.NS', start=start, end=end)
+    # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):
         stock.load_data()
@@ -109,13 +109,15 @@ def show_stock():
     # # # ------------------------Plot stock linechart--------------------
     fig = stock.plot_raw_data()
 
-    st.write(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
     change_c = st.sidebar.container()
     with change_c:
         stock.show_delta()
 
-    st.dataframe(stock.data)
+    if st.checkbox('Show raw data'):
+        st.subheader('Raw data')
+        st.write(stock.data)
 
 app()
 

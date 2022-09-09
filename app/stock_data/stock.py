@@ -2,7 +2,7 @@ import datetime
 import streamlit as st
 import plotly.graph_objects as go
 
-from graph_utils import plot_stock
+from graph_utils import plot_stock, cufflinks_plot_stock 
 from data_source.data_fetcher import StockDataFetcher
 
 data_fetcher = StockDataFetcher()
@@ -35,7 +35,16 @@ class Stock():
 
     def plot_raw_data(self):
         fig = go.Figure()
-        return plot_stock.plot_stock_close(fig, self.data, self.symbol)
+
+        return plot_stock.plot_macd(fig, self.data, self.symbol)
+
+        # return plot_stock.plot_stock_close(fig, self.data, self.symbol)
+
+        # cufflinks_plot_stock.cf_plot_candlestick(
+        #     self.data,
+        #     self.symbol
+        # )
+        # return cufflinks_plot_stock.cf_plot_candlestick(self.data, self.symbol)
 
     @staticmethod
     def nearest_business_day(DATE: datetime.date):
@@ -59,10 +68,10 @@ class Stock():
         epsilon = 1e-6
         i = self.start
         j = self.end
-        # s = self.data.query("date==@i")['Close'].values[0]
-        # e = self.data.query("date==@j")['Close'].values[0]
-        e = self.data.tail(1)['Close'].values[0]
-        s = self.data.head(1)['Close'].values[0]
+        # s = self.data.query("date==@i")['close'].values[0]
+        # e = self.data.query("date==@j")['close'].values[0]
+        e = self.data.tail(1)['close'].values[0]
+        s = self.data.head(1)['close'].values[0]
 
 
         difference = round(e - s, 2)
