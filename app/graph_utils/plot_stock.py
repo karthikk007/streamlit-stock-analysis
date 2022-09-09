@@ -17,6 +17,8 @@ def plot_macd(fig, df, name):
     df.ta.macd(close='close', fast=12, slow=26, signal=9, append=True)
     df.ta.rsi(close='close', length=length, append=True, signal_indicators=True, xa=60, xb=40, drift=3)
 
+    # Add indicators, using data from before
+    df.ta.sma(close='volume', length=50, append=True)
     
     # View result
     pd.set_option("display.max_columns", None)  # show all columns
@@ -77,6 +79,17 @@ def plot_macd(fig, df, name):
             # showlegend=False,
             # legendgroup='1',
             marker={'color':df['color']}
+        ), row=2, col=1, 
+    )
+
+    fig.append_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['sma_50'],
+            name='vol_sma_50',
+            # showlegend=False,
+            # legendgroup='1',
+            line=dict(color='red', width=2),
         ), row=2, col=1, 
     )
 
