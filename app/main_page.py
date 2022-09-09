@@ -16,9 +16,15 @@ def app():
     st.sidebar.markdown("# Main page 🎈")
     st.title('')
     
+    show_ticker_selector()
     show_date_picker()
     show_stock()
     
+def show_ticker_selector():
+    # List of tickers
+    TICKERS = ['TCS.NS', 'ITC.NS', 'RELIANCE.NS', 'COALINDIA.NS', 'VINATIORGA.NS', 'PAGEIND.NS', 'DEEPAKNTR.NS', 'ZOMATO.NS', 'AMARAJABAT.NS']
+    # Select ticker
+    st.sidebar.selectbox('Select ticker', sorted(TICKERS), index=6, key='ticker')
 
 def show_date_picker():
     with st.sidebar.container():
@@ -87,6 +93,8 @@ def show_stock():
     from_date_picker = st.session_state['from_date_picker']
     to_date_picker = st.session_state['to_date_picker']
 
+    ticker = st.session_state['ticker']
+
     start = datetime.datetime(
         year=from_date_picker.year,
         month=from_date_picker.month,
@@ -99,7 +107,7 @@ def show_stock():
     ) 
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
-    stock = Stock(symbol='TCS.NS', start=start, end=end)
+    stock = Stock(symbol=ticker, start=start, end=end)
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):

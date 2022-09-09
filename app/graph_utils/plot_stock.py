@@ -19,6 +19,9 @@ def plot_macd(fig, df, name):
 
     # Add indicators, using data from before
     df.ta.sma(close='volume', length=50, append=True)
+
+    # Add some indicators
+    df.ta.stoch(high='high', low='low', k=14, d=3, append=True)
     
     # View result
     pd.set_option("display.max_columns", None)  # show all columns
@@ -33,10 +36,10 @@ def plot_macd(fig, df, name):
     df = df.set_index('datetime')
 
     # Construct a 2 x 1 Plotly figure
-    fig = make_subplots(rows=4, cols=1, 
+    fig = make_subplots(rows=5, cols=1, 
             shared_xaxes=True,
             vertical_spacing=0.025,
-            row_width=[0.15, 0.15, 0.15, 0.5],
+            row_width=[0.15, 0.15, 0.15, 0.15, 0.5],
             subplot_titles=("Candle", 'Volume', "MACD", 'RSI'),
             # specs=[[{"secondary_y": True}], [{"secondary_y": True}], [{"secondary_y": True}]]
         )
@@ -150,6 +153,34 @@ def plot_macd(fig, df, name):
     fig.add_hline(y=30, col=1, row=4, line_color='#336699', line_width=1, line_dash='dash')
     fig.add_hline(y=70, col=1, row=4, line_color='#336699', line_width=1, line_dash='dash')
 
+
+    # stoch Fast Signal (%k)
+    fig.append_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['stochk_14_3_3'],
+            line=dict(color='#ff9900', width=2),
+            name='fast',
+        ), row=5, col=1 
+    )
+    # stoch Slow signal (%d)
+    fig.append_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['stochd_14_3_3'],
+            line=dict(color='#000000', width=2),
+            name='slow'
+        ), row=5, col=1  
+    )
+
+    # Extend our y-axis a bit
+    fig.update_yaxes(range=[-10, 110], row=5, col=1)
+    # Add upper/lower bounds
+    fig.add_hline(y=0, col=1, row=5, line_color="#666", line_width=1)
+    fig.add_hline(y=100, col=1, row=5, line_color="#666", line_width=1)
+    # Add overbought/oversold
+    fig.add_hline(y=20, col=1, row=5, line_color='#336699', line_width=1, line_dash='dash')
+    fig.add_hline(y=80, col=1, row=5, line_color='#336699', line_width=1, line_dash='dash')
 
 
     # Make it pretty
