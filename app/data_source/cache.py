@@ -1,9 +1,11 @@
 import datetime
+from functools import cache
 import pandas as pd
 import os
 import json 
 
 class Cache(object):
+    name = None
     cache = {}
 
     def __init__(self) -> None:
@@ -26,8 +28,90 @@ class Cache(object):
     def load_cache(self):
         assert('Implement in sub class')
 
+    def save_cache(self):
+        assert('Implement in sub class')
+
+    def perform_cache_eviction(self):
+        assert('Implement in sub class')
+
+    def print_cache_stats(self):
+        assert('Implement in sub class')
+
+
+class TickerDataCache(Cache):
+    name = 'ticker_data_cache'
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    def cache_dir(self):
+        file_path = '{}'.format('app/data_source/ticker_cache')
+        directory = os.path.join(os.getcwd(), file_path) 
+        return directory
+
+    def cache_file(self):
+        dir = self.cache_dir()
+        file = os.path.join(dir, self.cache_file_name())
+
+        return file
+
+    def cache_file_name(self):
+        return '{}.pickle'.format('ticker_list')
+
+    def update_cache(self, dict):
+        self.cache = dict
+        self.save_cache()
+
+    def save_cache(self):
+        print('[-------------------- save_cache', self.name)
+        cache_file = self.cache_file()
+
+        os.remove(cache_file) if os.path.exists(cache_file) else None
+
+        with open(cache_file, 'w') as f:
+            json.dump(self.cache, f, indent=4)
+            # pickle.dump(self.cache, f)
+
+        print(self.cache.keys())
+
+    def load_cache(self):
+        cache_file = self.cache_file()
+
+        if os.path.exists(cache_file):
+            with open(cache_file, 'r') as f:
+                self.cache = json.load(f)
+                # self.cache = pickle.load(f)
+
+            dict = self.cache
+
+            print('load_dictionary =========', self.name)
+
+            self.perform_cache_eviction()
+        else:
+            print('Cache file not found at', cache_file)
+
+    def perform_cache_eviction(self):
+        self.print_cache_stats()
+
+    def print_cache_stats(self):
+        ticker_count = 0
+        objects_count = 0
+        print('\n----------------------------------------')
+        print('cache status', self.name)
+        print('----------------------------------------')
+        for key, value in self.cache.items():
+            ticker_count = ticker_count + 1
+            # print('{:>16}'.format(key))
+
+        print('----------------------------------------')
+        print('\tticker = {}'.format(ticker_count))
+        print('----------------------------------------\n')
+
+    
 
 class StockDataCache(Cache):
+    name = 'stock_data_cache'
+
     def __init__(self) -> None:
         super().__init__()
 
