@@ -14,6 +14,10 @@ class Cache(object):
     def cache_dir(self):
         file_path = '{}'.format('app/data_source/data_cache')
         directory = os.path.join(os.getcwd(), file_path) 
+
+        if not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
+
         return directory
 
     def cache_file_name(self):
@@ -45,8 +49,12 @@ class TickerDataCache(Cache):
         super().__init__()
 
     def cache_dir(self):
-        file_path = '{}'.format('app/data_source/ticker_cache')
+        file_path = '{}'.format('app/data_source/data_cache/.ticker_data')
         directory = os.path.join(os.getcwd(), file_path) 
+
+        if not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
+
         return directory
 
     def cache_file(self):
@@ -75,6 +83,7 @@ class TickerDataCache(Cache):
         print(self.cache.keys())
 
     def load_cache(self):
+        print('[-------------------- load_cache', self.name)
         cache_file = self.cache_file()
 
         if os.path.exists(cache_file):
@@ -115,6 +124,15 @@ class StockDataCache(Cache):
     def __init__(self) -> None:
         super().__init__()
 
+    def cache_dir(self):
+        file_path = '{}'.format('app/data_source/data_cache/.stock_data')
+        directory = os.path.join(os.getcwd(), file_path) 
+
+        if not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
+
+        return directory
+
     def cache_file_name(self):
         return '{}.pickle'.format('stock_cache')
 
@@ -123,7 +141,7 @@ class StockDataCache(Cache):
         return key
 
     def get_relative_path(self, symbol):
-        return '{}/{}'.format('data_source/data_cache', symbol)
+        return '{}/{}'.format('data_source/data_cache/.stock_data', symbol)
 
     def get_file_name(self, symbol, start, end):
         return '{}.{}.pickle'.format(self.get_key_string(start, end), symbol)
