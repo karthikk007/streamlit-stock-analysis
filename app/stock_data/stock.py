@@ -1,6 +1,7 @@
 import datetime
 import streamlit as st
 import plotly.graph_objects as go
+import pandas as pd
 
 from graph_utils import plot_stock, cufflinks_plot_stock 
 from data_source.data_fetcher import StockDataFetcher
@@ -33,10 +34,42 @@ class Stock():
 
         return data
 
+
+    def add_macd(self):
+        # https://www.alpharithms.com/calculate-macd-python-272222/
+        # Calculate MACD values using the pandas_ta library
+        
+        self.data.ta.macd(close='close', fast=12, slow=26, signal=9, append=True)
+        
+
+    def add_rsi(self):
+        length = 8
+        self.data.ta.rsi(close='close', length=length, append=True, signal_indicators=True, xa=60, xb=40, drift=3)
+
+    
+    def add_sma_volume(self):
+        # Add indicators, using data from before
+        self.data.ta.sma(close='volume', length=50, append=True)
+    
+    def add_stochastic(self):
+        # Add some indicators
+        self.data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
+
     def plot_raw_data(self):
         fig = go.Figure()
 
-        return plot_stock.plot_macd(fig, self.data, self.symbol)
+        self.add_macd()
+        self.add_rsi()
+        self.add_sma_volume()
+        self.add_stochastic()
+
+        # View result
+        pd.set_option("display.max_columns", None)  # show all columns
+
+        # Force lowercase (optional)
+        self.data.columns = [x.lower() for x in self.data.columns]
+
+        return plot_stock.plot_macd(fig, self.data, 8)
 
         # return plot_stock.plot_stock_close(fig, self.data, self.symbol)
 

@@ -1,7 +1,6 @@
 
 import pandas_ta as ta
 import plotly.graph_objects as go
-import plotly.express as px
 from plotly.subplots import make_subplots
 import pandas as pd
 import numpy as np
@@ -9,25 +8,7 @@ import numpy as np
 UP_COLOR = '#ff9900'
 DOWN_COLOR = 'black'
 
-def plot_macd(fig, df, name):
-
-    # https://www.alpharithms.com/calculate-macd-python-272222/
-    # Calculate MACD values using the pandas_ta library
-    length = 8
-    df.ta.macd(close='close', fast=12, slow=26, signal=9, append=True)
-    df.ta.rsi(close='close', length=length, append=True, signal_indicators=True, xa=60, xb=40, drift=3)
-
-    # Add indicators, using data from before
-    df.ta.sma(close='volume', length=50, append=True)
-
-    # Add some indicators
-    df.ta.stoch(high='high', low='low', k=14, d=3, append=True)
-    
-    # View result
-    pd.set_option("display.max_columns", None)  # show all columns
-
-    # Force lowercase (optional)
-    df.columns = [x.lower() for x in df.columns]
+def plot_macd(fig, df, length):
 
     color_volume(df)
 
