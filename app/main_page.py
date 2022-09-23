@@ -45,7 +45,7 @@ def show_date_picker():
 
         
 def show_date_range(container):
-    container.selectbox('Range', ('-', '3 Months', '6 Months', '1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '10 Years', 'Max'), index=7, key='range_picker', on_change=did_change_date_range)
+    container.selectbox('Range', ('-', '3 Months', '6 Months', '1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '10 Years', 'Max'), index=4, key='range_picker', on_change=did_change_date_range)
 
 
 def did_change_date_picker():
