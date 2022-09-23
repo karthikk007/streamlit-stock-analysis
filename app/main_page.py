@@ -2,7 +2,7 @@
 
 import streamlit as st
 
-from stock_data.stock import Stock
+from stock_handler.stock import Stock
 import datetime
 from dateutil.relativedelta import relativedelta
 

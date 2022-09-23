@@ -1,5 +1,6 @@
 # Contents of ~/my_app/pages/page_2.py
 import streamlit as st
+from config.config import BuyTracker
 from data_source.ticker import Ticker
 import pandas as pd
 
@@ -8,6 +9,7 @@ def app():
     st.sidebar.markdown("# Page 2 ❄️")
 
     ticker = Ticker()
+    buy_tracker = BuyTracker()
 
     with st.spinner('loading...'):
         ticker.load_ticker_list()
@@ -18,14 +20,23 @@ def app():
 
         # st.table(df2)
         	
-        dict = df2.set_index('SYMBOL').to_dict()['NAME OF COMPANY']
+        symbol_dict = df2.set_index('SYMBOL').to_dict()['NAME OF COMPANY']
 
         options = st.multiselect(
             'Stocks to track',
-            list(dict.values()),
+            list(symbol_dict.values()),
             [])
 
         st.write('You selected:', options)
+
+        if st.button('Save'):
+            print('options = ', options)
+            # filtered_dict = dict(filter(lambda item: item[0] in options, symbol_dict)) 
+            filtered_dict = dict(filter(lambda item: item[1] in options, symbol_dict.items())) 
+            print('filtered_dict = ', filtered_dict)
+            buy_tracker.add_stocks(filtered_dict)
+            buy_tracker.save_list()
+            st.write('Saved!')
 
 
 app()

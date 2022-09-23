@@ -64,7 +64,7 @@ class TickerDataCache(Cache):
         return file
 
     def cache_file_name(self):
-        return '{}.pickle'.format('ticker_list')
+        return '{}.json'.format('ticker_list')
 
     def update_cache(self, dict):
         self.cache = dict
