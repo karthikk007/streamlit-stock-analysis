@@ -19,8 +19,6 @@ def app():
         # st.table(df2)
         	
         dict = df2.set_index('SYMBOL').to_dict()['NAME OF COMPANY']
-        print(dict.values())
-
 
         options = st.multiselect(
             'Stocks to track',
