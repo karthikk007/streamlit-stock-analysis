@@ -80,7 +80,6 @@ class TickerDataCache(Cache):
             json.dump(self.cache, f, indent=4)
             # pickle.dump(self.cache, f)
 
-        print(self.cache.keys())
 
     def load_cache(self):
         print('[-------------------- load_cache', self.name)
@@ -134,7 +133,7 @@ class StockDataCache(Cache):
         return directory
 
     def cache_file_name(self):
-        return '{}.pickle'.format('stock_cache')
+        return '{}.json'.format('stock_cache')
 
     def get_key_string(self, start: datetime, end: datetime):
         key = '{}_{}'.format(start.date(), end.date())

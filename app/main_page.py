@@ -1,12 +1,15 @@
 # Contents of ~/my_app/main_page.py
 
+from operator import index
+from select import select
 import streamlit as st
-
+from config.config import Tracker
 from stock_handler.stock import Stock
 import datetime
 from dateutil.relativedelta import relativedelta
 
 APP_NAME = "Stock App!"
+USING_DEFAULT_LIST = True
 
 def app():
     st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
@@ -21,10 +24,21 @@ def app():
     show_stock()
     
 def show_ticker_selector():
+    global USING_DEFAULT_LIST
+
+    track_list = get_track_list()
+
     # List of tickers
     TICKERS = ['TCS.NS', 'ITC.NS', 'RELIANCE.NS', 'COALINDIA.NS', 'VINATIORGA.NS', 'PAGEIND.NS', 'DEEPAKNTR.NS', 'ZOMATO.NS', 'AMARAJABAT.NS']
+
+    if len(track_list.values()) > 0:
+        USING_DEFAULT_LIST = False
+        TICKERS = track_list.values()
+
+    select_index = 0
+
     # Select ticker
-    st.sidebar.selectbox('Select ticker', sorted(TICKERS), index=6, key='ticker')
+    st.sidebar.selectbox('Select ticker', sorted(TICKERS), index=select_index, key='ticker')
 
 def show_date_picker():
     with st.sidebar.container():
@@ -90,10 +104,18 @@ def did_change_date_range():
 
 
 def show_stock():
+    global USING_DEFAULT_LIST
+    
     from_date_picker = st.session_state['from_date_picker']
     to_date_picker = st.session_state['to_date_picker']
 
     ticker = st.session_state['ticker']
+
+    if not USING_DEFAULT_LIST:
+        track_list = get_track_list()
+        index = list(track_list.values()).index(ticker)
+        ticker = list(track_list.keys())[index]
+        ticker = ticker + '.NS'        
 
     start = datetime.datetime(
         year=from_date_picker.year,
@@ -126,6 +148,13 @@ def show_stock():
     if st.checkbox('Show raw data'):
         st.subheader('Raw data')
         st.write(stock.data)
+
+def get_track_list():
+    tracker = Tracker()
+    track_list = tracker.track_list
+
+    return track_list
+
 
 app()
 
