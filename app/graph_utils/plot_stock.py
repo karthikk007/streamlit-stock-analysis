@@ -73,7 +73,7 @@ def plot_macd(fig, df, length):
             name='vol_sma_50',
             # showlegend=False,
             # legendgroup='1',
-            line=dict(color='red', width=2),
+            line=dict(color='red', width=1),
         ), row=2, col=1, 
     )
 

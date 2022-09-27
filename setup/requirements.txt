@@ -5,3 +5,4 @@ pandas
 cufflinks==0.17.3
 pandas_ta
 nsetools
+watchdog
