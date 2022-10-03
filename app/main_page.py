@@ -51,7 +51,7 @@ def show_date_picker():
         col1, col2 = con2.columns(2)
 
         end_date = datetime.datetime.today()
-        start_date = end_date - relativedelta(years=5)
+        start_date = end_date - relativedelta(years=1)
         min_date = end_date - relativedelta(years=20)
 
         col1.date_input('From', start_date, min_date, end_date, key='from_date_picker', on_change=did_change_date_picker)
@@ -59,6 +59,19 @@ def show_date_picker():
 
         
 def show_date_range(container):
+    periods = [
+        "1d", 
+        "5d",
+        "1mo",
+        "3mo",
+        "6mo",
+        "1y",
+        "2y",
+        "5y",
+        "10y",
+        "ytd",
+        "max",
+    ]
     container.selectbox('Range', ('-', '3 Months', '6 Months', '1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '10 Years', 'Max'), index=3, key='range_picker', on_change=did_change_date_range)
 
 
