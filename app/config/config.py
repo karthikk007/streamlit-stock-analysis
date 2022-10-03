@@ -27,6 +27,9 @@ class Tracker(object):
         self.track_list.update(stock_list)
 
 
+    def remove_stocks(self, stock_list):
+        [self.track_list.pop(key) for key in stock_list.keys()]
+
     @staticmethod
     def file_path():
         file = '{}'.format('app/config/.config_data/track_list.json')
