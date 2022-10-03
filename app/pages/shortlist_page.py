@@ -5,8 +5,8 @@ from data_source.ticker import Ticker
 import pandas as pd
 
 def app():
-    st.markdown("# Page 2 ❄️")
-    st.sidebar.markdown("# Page 2 ❄️")
+    st.markdown("# Shortlist ❄️")
+    st.sidebar.markdown("# Shortlist ❄️")
 
     ticker = Ticker()
     tracker = Tracker()
