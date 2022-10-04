@@ -40,7 +40,7 @@ def show_ticker_selector():
     track_list = get_track_list()
 
     # List of tickers
-    TICKERS = ['TCS.NS', 'ITC.NS', 'RELIANCE.NS', 'COALINDIA.NS', 'VINATIORGA.NS', 'PAGEIND.NS', 'DEEPAKNTR.NS', 'ZOMATO.NS', 'AMARAJABAT.NS']
+    TICKERS = ['TCS', 'ITC', 'RELIANCE', 'COALINDIA', 'VINATIORGA', 'PAGEIND', 'DEEPAKNTR', 'ZOMATO', 'AMARAJABAT']
 
     if len(track_list.values()) > 0:
         USING_DEFAULT_LIST = False
@@ -158,13 +158,13 @@ def show_stock():
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
     ticker_data = StockTickerData(ticker, track_list[ticker])
-    print("ticker = ", ticker)
     stock_data = StockData(ticker=ticker_data, key=range_key, start=start, end=end)
     stock = Stock(stock_data)
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):
         stock.load_data()
+        
     st.success('Data Loaded.')
 
     # # # ------------------------Plot stock linechart--------------------

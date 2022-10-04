@@ -16,7 +16,7 @@ class StockTickerData():
 
 class StockData():
     def __init__(self, ticker, key, start: datetime.date, end: datetime.date):
-        self.ticker = ticker
+        self.ticker: StockTickerData = ticker
         self.key = key
         self.start = start
         self.end = end
@@ -30,14 +30,15 @@ class Stock():
         
     """
 
-    def __init__(self, stock_data):
+    def __init__(self, stock_data: StockData):
         self.stock_data = stock_data
 
     # @st.cache(show_spinner=True) #Using st.cache allows st to load the data once and cache it. 
     def load_data(self, start: datetime.date = None, end: datetime.date = None, inplace=True):
-        ticker = self.stock_data.ticker.symbol + '.NS'
+        ticker = self.stock_data.ticker
+        symbol = ticker.symbol + '.NS'
         key = self.stock_data.key
-        data = data_fetcher.load_data(ticker, key, self.stock_data.start, self.stock_data.end, inplace) 
+        data = data_fetcher.load_data(symbol, key, self.stock_data.start, self.stock_data.end, inplace) 
 
         data = data.dropna()
 
