@@ -1,7 +1,7 @@
 import json
 import os
 
-class Tracker(object):
+class StockTracker(object):
     track_list = {}
 
     def __init__(self) -> None:
@@ -9,14 +9,14 @@ class Tracker(object):
 
 
     def load_list(self):
-        file_path = Tracker.file_path()
+        file_path = StockTracker.file_path()
 
         with open(file_path, 'r') as f:
             self.track_list = json.load(f)
 
 
     def save_list(self):
-        file_path = Tracker.file_path()
+        file_path = StockTracker.file_path()
 
         with open(file_path, 'w') as f:
             self.track_list = dict(sorted(self.track_list.items()))

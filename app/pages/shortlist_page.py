@@ -1,6 +1,6 @@
 # Contents of ~/my_app/pages/page_2.py
 import streamlit as st
-from config.config import Tracker
+from config.config import StockTracker
 from data_source.ticker import Ticker
 import pandas as pd
 
@@ -9,7 +9,7 @@ def app():
     st.sidebar.markdown("# Shortlist ❄️")
 
     ticker = Ticker()
-    tracker = Tracker()
+    tracker = StockTracker()
 
     with st.spinner('loading...'):
         ticker.load_ticker_list()

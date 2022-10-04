@@ -10,8 +10,6 @@ DOWN_COLOR = 'black'
 
 def plot_macd(fig, df, length):
 
-    color_volume(df)
-
     # print(df)
 
     df = df.set_index('datetime')
@@ -305,7 +303,4 @@ def show_spikes(fig):
 
     fig.update_layout(spikedistance=100, hoverdistance=20)
 
-def color_volume(df):
-    df['diff'] = df['close'] - df['open']
-    df.loc[df['diff']>=0, 'color'] = UP_COLOR
-    df.loc[df['diff']<0, 'color'] = DOWN_COLOR
+

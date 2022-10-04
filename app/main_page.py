@@ -5,7 +5,7 @@ from select import select
 import streamlit as st
 from stock_handler.stock import StockTickerData
 from stock_handler.stock import StockData
-from config.config import Tracker
+from config.config import StockTracker
 from stock_handler.stock import Stock
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -140,6 +140,8 @@ def show_stock():
 
     ticker = st.session_state['ticker']
 
+    track_list = {}
+
     if not USING_DEFAULT_LIST:
         track_list = get_track_list()
         index = list(track_list.values()).index(ticker)
@@ -157,13 +159,17 @@ def show_stock():
     ) 
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
-    ticker_data = StockTickerData(ticker, track_list[ticker])
+    desc = track_list[ticker] if len(track_list) > 0 else ''
+    ticker_data = StockTickerData(ticker, desc)
     stock_data = StockData(ticker=ticker_data, key=range_key, start=start, end=end)
     stock = Stock(stock_data)
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):
         stock.load_data()
+
+    if len(stock.stock_data.data) < 30:
+        st.write('{} has {} only entries...'.format(ticker, len(stock.stock_data.data)))
         
     st.success('Data Loaded.')
 
@@ -181,7 +187,7 @@ def show_stock():
         st.write(stock.stock_data.data)
 
 def get_track_list():
-    tracker = Tracker()
+    tracker = StockTracker()
     track_list = tracker.track_list
 
     return track_list

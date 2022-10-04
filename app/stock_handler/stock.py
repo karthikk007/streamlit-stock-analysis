@@ -2,9 +2,11 @@ import datetime
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
+import numpy as np
 
 from graph_utils import plot_stock, cufflinks_plot_stock 
 from data_source.data_fetcher import StockDataFetcher
+from graph_utils.plot_stock import UP_COLOR, DOWN_COLOR
 
 data_fetcher = StockDataFetcher()
 
@@ -15,7 +17,7 @@ class StockTickerData():
         self.desc = desc
 
 class StockData():
-    def __init__(self, ticker, key, start: datetime.date, end: datetime.date):
+    def __init__(self, ticker: StockTickerData, key, start: datetime.date, end: datetime.date):
         self.ticker: StockTickerData = ticker
         self.key = key
         self.start = start
@@ -71,21 +73,27 @@ class Stock():
         self.stock_data.data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
 
     def add_indicators(self):
+
         self.add_macd()
         self.add_rsi()
         self.add_sma_volume()
         self.add_stochastic()
-
-    def plot_raw_data(self):
-        fig = go.Figure()
-
-        self.add_indicators()
 
         # View result
         pd.set_option("display.max_columns", None)  # show all columns
 
         # Force lowercase (optional)
         self.stock_data.data.columns = [x.lower() for x in self.stock_data.data.columns]
+
+        self.color_volume()
+        self.add_buy_signal()
+        self.add_sell_signal()
+
+
+    def plot_raw_data(self):
+        fig = go.Figure()
+
+        self.add_indicators()
 
         return plot_stock.plot_macd(fig, self.stock_data.data, 8)
 
@@ -138,3 +146,34 @@ class Stock():
         cols[1].markdown(
             f"""<p style="color:{color};font-size:90%;margin-right:5px">{marker}{difference} &emsp; {marker}{change}% </p>""",
             unsafe_allow_html=True) 
+
+    def color_volume(self):
+        df = self.stock_data.data
+
+        df['diff'] = df['close'] - df['open']
+        df.loc[df['diff']>=0, 'color'] = UP_COLOR
+        df.loc[df['diff']<0, 'color'] = DOWN_COLOR
+
+    def add_buy_signal(self):
+        df = self.stock_data.data
+
+        df.loc[
+            np.logical_and(
+                df['rsi_8_b_40']==1,
+                df['stochk_14_3_3']<=25.0,
+                df['stochd_14_3_3']<=25.0,
+            ), 'buy_signal'] = True
+
+        df['buy_signal'].fillna(False, inplace=True)
+
+    def add_sell_signal(self):
+        df = self.stock_data.data
+
+        df.loc[
+            np.logical_and(
+                df['rsi_8_a_60']==1,
+                df['stochk_14_3_3']>=75.0,
+                df['stochd_14_3_3']>=75.0,
+            ), 'sell_signal'] = True
+
+        df['sell_signal'].fillna(False, inplace=True)

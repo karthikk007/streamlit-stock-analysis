@@ -37,14 +37,14 @@ class StockDataFetcher(DataFetcher):
             #     data = yf.download(symbol, start, end + datetime.timedelta(days=1))
 
             data = yf.download(symbol, start, end + datetime.timedelta(days=1))
-            
-            self.data_cache.update_cache(symbol, key, data, start, end)
 
-        #Check if there is data
-        try:
-            assert len(data) > 0
-        except AssertionError:
-            print("Cannot fetch data, check spelling or time window")
+            #Check if there is data
+            try:
+                assert len(data) > 0
+                self.data_cache.update_cache(symbol, key, data, start, end)
+            except AssertionError:
+                print("Cannot fetch data, check spelling or time window")
+
 
         data.reset_index(inplace=True)
 
