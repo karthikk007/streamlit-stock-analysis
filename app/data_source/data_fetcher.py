@@ -16,13 +16,13 @@ class StockDataFetcher(DataFetcher):
         super().__init__()
 
     # @st.cache(show_spinner=True) #Using st.cache allows st to load the data once and cache it. 
-    def load_data(self, symbol, start: datetime.date, end: datetime.date, inplace=False):
+    def load_data(self, symbol, key, start: datetime.date, end: datetime.date, inplace=False):
         """
         takes a start and end dates, download data do some processing and returns dataframe
         """
 
         data = None
-        cache_data = self.data_cache.fetch_from_cache(symbol, start, end)
+        cache_data = self.data_cache.fetch_from_cache(symbol, key)
 
         if cache_data is not None and len(cache_data) > 0:
              data = cache_data
@@ -38,7 +38,7 @@ class StockDataFetcher(DataFetcher):
 
             data = yf.download(symbol, start, end + datetime.timedelta(days=1))
             
-            self.data_cache.update_cache(symbol, data, start, end)
+            self.data_cache.update_cache(symbol, key, data, start, end)
 
         #Check if there is data
         try:

@@ -15,15 +15,16 @@ class Stock():
         
     """
 
-    def __init__(self, symbol, start: datetime.date, end: datetime.date):
+    def __init__(self, symbol, key, start: datetime.date, end: datetime.date):
         self.symbol = symbol
+        self.key = key
         self.start = start
         self.end = end
         self.data = None
 
     # @st.cache(show_spinner=True) #Using st.cache allows st to load the data once and cache it. 
     def load_data(self, start: datetime.date = None, end: datetime.date = None, inplace=True):   
-        data = data_fetcher.load_data(self.symbol, start, end, inplace) if start is not None else data_fetcher.load_data(self.symbol, self.start, self.end, inplace)
+        data = data_fetcher.load_data(self.symbol, self.key, self.start, self.end, inplace) 
 
         data = data.dropna()
 
@@ -55,13 +56,16 @@ class Stock():
         # Add some indicators
         self.data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
 
-    def plot_raw_data(self):
-        fig = go.Figure()
-
+    def add_indicators(self):
         self.add_macd()
         self.add_rsi()
         self.add_sma_volume()
         self.add_stochastic()
+
+    def plot_raw_data(self):
+        fig = go.Figure()
+
+        self.add_indicators()
 
         # View result
         pd.set_option("display.max_columns", None)  # show all columns

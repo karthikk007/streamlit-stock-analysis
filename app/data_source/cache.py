@@ -142,15 +142,15 @@ class StockDataCache(Cache):
     def get_relative_path(self, symbol):
         return '{}/{}'.format('data_source/data_cache/.stock_data', symbol)
 
-    def get_file_name(self, symbol, start, end):
-        return '{}.{}.pickle'.format(self.get_key_string(start, end), symbol)
+    def get_file_name(self, symbol, key):
+        return '{}.{}.pickle'.format(key, symbol)
 
     def get_directory_for(self, symbol):
         return os.path.join(self.cache_dir(), symbol)
 
-    def get_file_path_for(self, symbol, start, end):
+    def get_file_path_for(self, symbol, key):
         directory = self.get_directory_for(symbol)
-        file_name = self.get_file_name(symbol, start, end)
+        file_name = self.get_file_name(symbol, key)
         file = os.path.join(directory, file_name)
 
         os.mkdir(directory) if not os.path.exists(directory) else None
@@ -158,7 +158,7 @@ class StockDataCache(Cache):
         return file
         
 
-    def fetch_from_cache(self, symbol, start, end):
+    def fetch_from_cache(self, symbol, key):
 
         frame = self.cache.get(symbol)
 
@@ -166,7 +166,6 @@ class StockDataCache(Cache):
             print('cache miss for', symbol)
             return None
 
-        key = self.get_key_string(start, end)
         value = frame.get(key)
         cache_data = None
 
@@ -182,10 +181,9 @@ class StockDataCache(Cache):
             return data
             
 
-    def update_cache(self, symbol, data, start: datetime, end: datetime):
+    def update_cache(self, symbol, key, data, start: datetime, end: datetime):
         print('[-------------------- update_cache')
-        path = self.get_file_path_for(symbol, start, end)
-        key = self.get_key_string(start, end)
+        path = self.get_file_path_for(symbol, key)
 
         data.to_pickle(path)
 

@@ -21,7 +21,16 @@ def app():
     
     show_ticker_selector()
     show_date_picker()
-    show_stock()
+
+    technical_analysis_tab, fundamental_analysis_tab = st.tabs(["Technical Analysis", "Fundamental Analysis"])
+
+    with technical_analysis_tab:
+        show_stock()
+
+    with fundamental_analysis_tab:
+        show_fundamentals()
+
+    
     
 def show_ticker_selector():
     global USING_DEFAULT_LIST
@@ -116,11 +125,16 @@ def did_change_date_range():
     st.session_state['to_date_picker'] = end_date
 
 
+def show_fundamentals():
+    st.write('Fundamental analysis')
+
+
 def show_stock():
     global USING_DEFAULT_LIST
 
     from_date_picker = st.session_state['from_date_picker']
     to_date_picker = st.session_state['to_date_picker']
+    range_key = st.session_state['range_picker']
 
     ticker = st.session_state['ticker']
 
@@ -142,7 +156,7 @@ def show_stock():
     ) 
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
-    stock = Stock(symbol=ticker, start=start, end=end)
+    stock = Stock(symbol=ticker, key=range_key, start=start, end=end)
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):

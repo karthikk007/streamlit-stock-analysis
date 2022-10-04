@@ -21,7 +21,7 @@ def plot_macd(fig, df, length):
             shared_xaxes=True,
             vertical_spacing=0.025,
             row_width=[0.15, 0.15, 0.15, 0.15, 0.5],
-            subplot_titles=("Candle", 'Volume', "MACD", 'RSI'),
+            subplot_titles=("Candle", 'Volume', "MACD", 'RSI', 'STOCH'),
             # specs=[[{"secondary_y": True}], [{"secondary_y": True}], [{"secondary_y": True}]]
         )
 
