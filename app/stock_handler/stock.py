@@ -8,6 +8,21 @@ from data_source.data_fetcher import StockDataFetcher
 
 data_fetcher = StockDataFetcher()
 
+
+class StockTickerData():
+    def __init__(self, symbol, desc) -> None:
+        self.symbol = symbol
+        self.desc = desc
+
+class StockData():
+    def __init__(self, ticker, key, start: datetime.date, end: datetime.date):
+        self.ticker = ticker
+        self.key = key
+        self.start = start
+        self.end = end
+        self.data = None
+
+
 class Stock():
     """
     This class enables data loading, plotting and statistical analysis of a given stock,
@@ -15,23 +30,21 @@ class Stock():
         
     """
 
-    def __init__(self, symbol, key, start: datetime.date, end: datetime.date):
-        self.symbol = symbol
-        self.key = key
-        self.start = start
-        self.end = end
-        self.data = None
+    def __init__(self, stock_data):
+        self.stock_data = stock_data
 
     # @st.cache(show_spinner=True) #Using st.cache allows st to load the data once and cache it. 
-    def load_data(self, start: datetime.date = None, end: datetime.date = None, inplace=True):   
-        data = data_fetcher.load_data(self.symbol, self.key, self.start, self.end, inplace) 
+    def load_data(self, start: datetime.date = None, end: datetime.date = None, inplace=True):
+        ticker = self.stock_data.ticker.symbol + '.NS'
+        key = self.stock_data.key
+        data = data_fetcher.load_data(ticker, key, self.stock_data.start, self.stock_data.end, inplace) 
 
         data = data.dropna()
 
         if inplace:
-            self.data = data
-            self.start = start if start is not None else self.start
-            self.end = end if end is not None else self.end
+            self.stock_data.data = data
+            self.stock_data.start = start if start is not None else self.stock_data.start
+            self.stock_data.end = end if end is not None else self.stock_data.end
 
         return data
 
@@ -40,21 +53,21 @@ class Stock():
         # https://www.alpharithms.com/calculate-macd-python-272222/
         # Calculate MACD values using the pandas_ta library
         
-        self.data.ta.macd(close='close', fast=12, slow=26, signal=9, append=True)
+        self.stock_data.data.ta.macd(close='close', fast=12, slow=26, signal=9, append=True)
         
 
     def add_rsi(self):
         length = 8
-        self.data.ta.rsi(close='close', length=length, append=True, signal_indicators=True, xa=60, xb=40, drift=3)
+        self.stock_data.data.ta.rsi(close='close', length=length, append=True, signal_indicators=True, xa=60, xb=40, drift=3)
 
     
     def add_sma_volume(self):
         # Add indicators, using data from before
-        self.data.ta.sma(close='volume', length=50, append=True)
+        self.stock_data.data.ta.sma(close='volume', length=50, append=True)
     
     def add_stochastic(self):
         # Add some indicators
-        self.data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
+        self.stock_data.data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
 
     def add_indicators(self):
         self.add_macd()
@@ -71,9 +84,9 @@ class Stock():
         pd.set_option("display.max_columns", None)  # show all columns
 
         # Force lowercase (optional)
-        self.data.columns = [x.lower() for x in self.data.columns]
+        self.stock_data.data.columns = [x.lower() for x in self.stock_data.data.columns]
 
-        return plot_stock.plot_macd(fig, self.data, 8)
+        return plot_stock.plot_macd(fig, self.stock_data.data, 8)
 
         # return plot_stock.plot_stock_close(fig, self.data, self.symbol)
 
@@ -103,12 +116,12 @@ class Stock():
         """
 
         epsilon = 1e-6
-        i = self.start
-        j = self.end
+        i = self.stock_data.start
+        j = self.stock_data.end
         # s = self.data.query("date==@i")['close'].values[0]
         # e = self.data.query("date==@j")['close'].values[0]
-        e = self.data.tail(1)['close'].values[0]
-        s = self.data.head(1)['close'].values[0]
+        e = self.stock_data.data.tail(1)['close'].values[0]
+        s = self.stock_data.data.head(1)['close'].values[0]
 
 
         difference = round(e - s, 2)
@@ -118,7 +131,7 @@ class Stock():
         (color, marker) = ("green", "+") if difference >= 0 else ("red", "")
 
         cols[0].markdown(
-            f"""<p style="font-size: 90%;margin-left:5px">{self.symbol}: {e}</p>""",
+            f"""<p style="font-size: 90%;margin-left:5px">{self.stock_data.ticker.symbol}: {e}</p>""",
             unsafe_allow_html=True)
         
         cols[1].markdown(

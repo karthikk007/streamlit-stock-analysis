@@ -3,6 +3,8 @@
 from operator import index
 from select import select
 import streamlit as st
+from stock_handler.stock import StockTickerData
+from stock_handler.stock import StockData
 from config.config import Tracker
 from stock_handler.stock import Stock
 import datetime
@@ -141,8 +143,7 @@ def show_stock():
     if not USING_DEFAULT_LIST:
         track_list = get_track_list()
         index = list(track_list.values()).index(ticker)
-        ticker = list(track_list.keys())[index]
-        ticker = ticker + '.NS'        
+        ticker = list(track_list.keys())[index]     
 
     start = datetime.datetime(
         year=from_date_picker.year,
@@ -156,7 +157,10 @@ def show_stock():
     ) 
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
-    stock = Stock(symbol=ticker, key=range_key, start=start, end=end)
+    ticker_data = StockTickerData(ticker, track_list[ticker])
+    print("ticker = ", ticker)
+    stock_data = StockData(ticker=ticker_data, key=range_key, start=start, end=end)
+    stock = Stock(stock_data)
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):
@@ -174,7 +178,7 @@ def show_stock():
 
     if st.checkbox('Show raw data'):
         st.subheader('Raw data')
-        st.write(stock.data)
+        st.write(stock.stock_data.data)
 
 def get_track_list():
     tracker = Tracker()

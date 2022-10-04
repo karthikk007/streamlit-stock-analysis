@@ -1,6 +1,8 @@
 # Contents of ~/my_app/pages/page_3.py
 import streamlit as st
 
+from stock_handler.stock_signals import StockSignals
+
 
 def app():
     st.markdown("# Signals 🎉")
@@ -16,11 +18,16 @@ def app():
 
 
 def add_buy_signal_tab_items():
-    pass
+    stockSignals = StockSignals()
+    
+    st.json(stockSignals.buy_stock_signals)
+    
 
 
 def add_sell_signal_tab_items():
-    pass
+    stockSignals = StockSignals()
+    
+    st.json(stockSignals.sell_stock_signals)
 
 
 app()
