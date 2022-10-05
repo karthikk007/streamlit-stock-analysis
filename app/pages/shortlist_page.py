@@ -1,20 +1,20 @@
 # Contents of ~/my_app/pages/page_2.py
 import streamlit as st
-from config.config import StockTracker
-from data_source.ticker import Ticker
+from config.stock_tracker import StockTracker
+from data_handler.ticker_data_fetcher import TickerDataFetcher
 import pandas as pd
 
 def app():
     st.markdown("# Shortlist ❄️")
     st.sidebar.markdown("# Shortlist ❄️")
 
-    ticker = Ticker()
+    ticker_data_fetcher = TickerDataFetcher()
     tracker = StockTracker()
 
     with st.spinner('loading...'):
-        ticker.load_ticker_list()
+        ticker_data_fetcher.load_ticker_list()
 
-        df = pd.DataFrame(ticker.all_stock_codes.items())
+        df = pd.DataFrame(ticker_data_fetcher.all_stock_codes.items())
         header_row = df.iloc[0]
         df2 = pd.DataFrame(df.values[1:], columns=header_row)
 

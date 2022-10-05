@@ -1,7 +1,7 @@
 # Contents of ~/my_app/pages/page_3.py
 import streamlit as st
 
-from config.config import StockTracker
+from config.stock_tracker import StockTracker
 
 from stock_handler.stock_signals import StockSignals
 

@@ -1,13 +1,15 @@
-from nsetools import Nse
-from data_source.cache import TickerDataCache
+from data_handler.data_fetcher import DataFetcher
 
-class Ticker(object):
-    all_stock_codes = {}
+from nsetools import Nse
+from cache_handler.ticker_data_cache import TickerDataCache
+
+class TickerDataFetcher(DataFetcher):
     
     def __init__(self):
+        super().__init__()
         self.nse = Nse()
         self.data_cache = TickerDataCache()
-
+        self.all_stock_codes = {}
 
     def load_ticker_list(self):
 

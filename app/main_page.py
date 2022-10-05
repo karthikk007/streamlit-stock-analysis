@@ -1,11 +1,9 @@
 # Contents of ~/my_app/main_page.py
 
-from operator import index
-from select import select
 import streamlit as st
-from stock_handler.stock import StockTickerData
+from stock_handler.stock_ticker_data import StockTickerData
 from stock_handler.stock import StockData
-from config.config import StockTracker
+from config.stock_tracker import StockTracker
 from stock_handler.stock import Stock
 import datetime
 from dateutil.relativedelta import relativedelta

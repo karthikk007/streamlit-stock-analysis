@@ -1,6 +1,7 @@
 
-from stock_handler.stock import StockData, StockTickerData
-from config.config import StockTracker
+from stock_handler.stock_data import StockData
+from stock_handler.stock_ticker_data import StockTickerData
+from config.stock_tracker import StockTracker
 from stock_handler.stock import Stock
 
 import datetime

@@ -1,19 +1,12 @@
+from cache_handler.stock_data_cache import StockDataCache
+from data_handler.data_fetcher import DataFetcher
 import datetime
-from data_source.cache import StockDataCache
 import yfinance as yf
-
-class DataFetcher(object):
-
-    def __init__(self) -> None:
-        self.data_cache = StockDataCache()
-
-    def __del__(self):
-        print('................................ DataFetcher deleted...')
-
 
 class StockDataFetcher(DataFetcher):
     def __init__(self) -> None:
         super().__init__()
+        self.data_cache = StockDataCache()
 
     # @st.cache(show_spinner=True) #Using st.cache allows st to load the data once and cache it. 
     def load_data(self, symbol, key, start: datetime.date, end: datetime.date, inplace=False):

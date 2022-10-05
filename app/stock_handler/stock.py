@@ -4,25 +4,14 @@ import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
 
-from graph_utils import plot_stock, cufflinks_plot_stock 
-from data_source.data_fetcher import StockDataFetcher
+from graph_utils.plot_stock import plot_macd
+from data_handler.stock_data_fetcher import StockDataFetcher
 from graph_utils.plot_stock import UP_COLOR, DOWN_COLOR
 
+from stock_handler.stock_data import StockData
+
+
 data_fetcher = StockDataFetcher()
-
-
-class StockTickerData():
-    def __init__(self, symbol, desc) -> None:
-        self.symbol = symbol
-        self.desc = desc
-
-class StockData():
-    def __init__(self, ticker: StockTickerData, key, start: datetime.date, end: datetime.date):
-        self.ticker: StockTickerData = ticker
-        self.key = key
-        self.start = start
-        self.end = end
-        self.data = None
 
 
 class Stock():
@@ -95,7 +84,7 @@ class Stock():
 
         self.add_indicators()
 
-        return plot_stock.plot_macd(fig, self.stock_data.data, 8)
+        return plot_macd(fig, self.stock_data.data, 8)
 
         # return plot_stock.plot_stock_close(fig, self.data, self.symbol)
 
