@@ -14,12 +14,11 @@ class StockSignalsData():
 
 
 class StockSignals(object):
-    buy_signals = {}
-    sell_signals = {}
-    data = {}
 
     def __init__(self) -> None:
-        pass
+        self.buy_signals = {}
+        self.sell_signals = {}
+        self.data = {}
 
     def process_records(self):        
     
