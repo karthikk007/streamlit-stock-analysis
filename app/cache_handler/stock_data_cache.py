@@ -83,6 +83,7 @@ class StockDataCache(Cache):
         print('[-------------------- save_cache')
         cache_file = self.absolute_file_path()
 
+        self.cache = dict(sorted(self.cache.items()))
         os.remove(cache_file) if os.path.exists(cache_file) else None
 
         with open(cache_file, 'w') as f:

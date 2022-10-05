@@ -11,7 +11,6 @@ class StockTracker(object):
 
 
     def save_list(self):
-        self.track_list = dict(sorted(self.track_list.items()))
         self.data_cache.cache = self.track_list
         self.data_cache.save_cache()
 

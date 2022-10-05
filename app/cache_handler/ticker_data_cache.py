@@ -10,7 +10,7 @@ class TickerDataCache(Cache):
 
     def __init__(self) -> None:
         super().__init__()
-        
+
 
     def update_cache(self, dict):
         self.cache = dict
@@ -20,6 +20,7 @@ class TickerDataCache(Cache):
         print('[-------------------- save_cache', self.name)
         cache_file = self.absolute_file_path()
 
+        self.cache = dict(sorted(self.cache.items()))
         os.remove(cache_file) if os.path.exists(cache_file) else None
 
         with open(cache_file, 'w') as f:
