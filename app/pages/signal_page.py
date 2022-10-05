@@ -5,6 +5,8 @@ from config.stock_tracker import StockTracker
 
 from stock_handler.stock_signals import StockSignals
 
+import streamlit as st
+
 
 
 def app():
@@ -15,11 +17,12 @@ def app():
 
     stockSignals = StockSignals()
 
-    with buy_signal_tab:
-        add_buy_signal_tab_items(stockSignals)
+    with st.spinner('Loading data...'):
+        with buy_signal_tab:
+            add_buy_signal_tab_items(stockSignals)
 
-    with sell_signal_tab:
-        add_sell_signal_tab_items(stockSignals)
+        with sell_signal_tab:
+            add_sell_signal_tab_items(stockSignals)
 
 
 def add_buy_signal_tab_items(stockSignals: StockSignals):
