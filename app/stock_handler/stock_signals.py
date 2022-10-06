@@ -14,6 +14,8 @@ class StockSignalsData():
 
 
 class StockSignals(object):
+    signal_delta = 10
+    signal_treshold = 0.5
 
     def __init__(self) -> None:
         self.buy_signals = {}
@@ -42,10 +44,14 @@ class StockSignals(object):
         is_buy_signal = False
 
         df = data.stock.stock_data.data
-        df_lookup = df.iloc[-5:]
+        df_lookup = df.iloc[-self.signal_delta:]
 
+        buy_count = 0
         for x in df_lookup["buy_signal"]:
             if x:
+                buy_count += 1
+            
+            if buy_count >= self.signal_delta * self.signal_treshold:
                 is_buy_signal = True
                 break
         
@@ -55,10 +61,14 @@ class StockSignals(object):
         is_sell_signal = False
 
         df = data.stock.stock_data.data
-        df_lookup = df.iloc[-5:]
+        df_lookup = df.iloc[-self.signal_delta:]
 
-        for i in df_lookup["sell_signal"]:
-            if i:
+        sell_count = 0
+        for x in df_lookup["sell_signal"]:
+            if x:
+                sell_count += 1
+            
+            if sell_count >= self.signal_delta * self.signal_treshold:
                 is_sell_signal = True
                 break
         
