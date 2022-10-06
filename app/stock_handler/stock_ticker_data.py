@@ -1,6 +1,6 @@
 
 
 class StockTickerData():
-    def __init__(self, symbol, desc) -> None:
+    def __init__(self, symbol, name) -> None:
         self.symbol = symbol
-        self.desc = desc
+        self.name = name

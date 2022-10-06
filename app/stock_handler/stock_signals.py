@@ -12,6 +12,9 @@ class StockSignalsData():
     def __init__(self, stock: Stock) -> None:
         self.stock = stock
 
+    def get_ticker(self):
+        return self.stock.stock_data.ticker
+
 
 class StockSignals(object):
     signal_delta = 10

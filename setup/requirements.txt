@@ -1,8 +1,9 @@
-streamlit
-plotly
-yfinance
-pandas
 cufflinks==0.17.3
-pandas_ta
 nsetools
+plotly
+pandas
+pandas_ta
+streamlit
+streamlit-aggrid
 watchdog
+yfinance

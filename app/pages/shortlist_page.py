@@ -50,6 +50,8 @@ def add_add_tab_items(tracker, symbol_dict, list_to_add):
         tracker.save_list()
         st.write('Saved!')
 
+        st.experimental_rerun()
+
     st.write('Track list:', tracker.track_list)
 
 
@@ -68,6 +70,8 @@ def add_delete_tab_items(tracker, symbol_dict, list_to_delete):
         tracker.remove_stocks(filtered_dict)
         tracker.save_list()
         st.write('Deleted!')
+
+        st.experimental_rerun()
 
     st.write('Track list:', tracker.track_list)
 
