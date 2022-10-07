@@ -1,15 +1,10 @@
 import datetime
-import json 
+import json
 
-class CacheData(object):
-    time_stamp = datetime.datetime.now().date()
-    data = {}
+from .data_model import DataModel
 
-    def __init__(self) -> None:
-        pass
- 
 
-class StockCacheData(CacheData):
+class StockDataCacheModel(DataModel):
     def __init__(self, symbol, start: datetime, end: datetime, path) -> None:
         super().__init__()
         self.symbol = symbol
@@ -24,13 +19,11 @@ class StockCacheData(CacheData):
         end = dict['end']
         path = dict['path']
 
-        return StockCacheData(symbol, start, end, path)
-
-
+        return StockDataCacheModel(symbol, start, end, path)
 
 class Encoder(json.JSONEncoder):
     def default(self, o):
-        if isinstance(o, StockCacheData):
+        if isinstance(o, StockDataCacheModel):
             dict = {
                 'symbol': o.symbol,
                 'start': o.start.isoformat(),
@@ -43,4 +36,3 @@ class Encoder(json.JSONEncoder):
             return o.isoformat()
 
         return json.JSONEncoder.default(self, o)
-

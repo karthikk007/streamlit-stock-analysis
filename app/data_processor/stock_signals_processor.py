@@ -1,22 +1,22 @@
+from data_processor.stock_data_processor import StockDataProcessor
+from data_models.ticker_data_model import TickerDataModel
+from cache_handler.stock_tracker_handler import StockTrackingHandler
+from data_models.stock_data_view_model import StockDataViewModel
 
-from stock_handler.stock_data import StockData
-from stock_handler.stock_ticker_data import StockTickerData
-from config.stock_tracker import StockTracker
-from stock_handler.stock import Stock
 
 import datetime
 from dateutil.relativedelta import relativedelta
 
 
 class StockSignalsData():
-    def __init__(self, stock: Stock) -> None:
+    def __init__(self, stock: StockDataViewModel) -> None:
         self.stock = stock
 
     def get_ticker(self):
-        return self.stock.stock_data.ticker
+        return self.stock.ticker
 
 
-class StockSignals(object):
+class StockSignalProcessor(object):
     signal_delta = 10
     signal_treshold = 0.5
 
@@ -46,7 +46,7 @@ class StockSignals(object):
     def is_buy_signal(self, data: StockSignalsData):
         is_buy_signal = False
 
-        df = data.stock.stock_data.data
+        df = data.stock.data
         df_lookup = df.iloc[-self.signal_delta:]
 
         buy_count = 0
@@ -63,7 +63,7 @@ class StockSignals(object):
     def is_sell_signal(self, data: StockSignalsData):
         is_sell_signal = False
 
-        df = data.stock.stock_data.data
+        df = data.stock.data
         df_lookup = df.iloc[-self.signal_delta:]
 
         sell_count = 0
@@ -79,24 +79,24 @@ class StockSignals(object):
 
     def populate_stock_signal(self, key, value):
 
-        ticker = StockTickerData(key, value)
+        ticker = TickerDataModel(key, value)
         end_date = datetime.datetime.today()
         start_date = end_date - relativedelta(years=1)
-        stock_data = StockData(ticker=ticker, key="1 Year", start=start_date, end=end_date)
+        stock_data = StockDataViewModel(ticker=ticker, key="1 Year", start=start_date, end=end_date)
 
-        stock = Stock(stock_data=stock_data)
+        stock_processor = StockDataProcessor(stock_data)
         
-        stock.load_data()
-        stock.add_indicators()
+        stock_processor.load_data()
+        stock_processor.add_indicators()
 
-        stock_signal = StockSignalsData(stock)
+        stock_signal = StockSignalsData(stock_processor.stock_data)
 
         return stock_signal
 
 
 def get_track_list():
-    tracker = StockTracker()
-    track_list = tracker.track_list
+    tracker = StockTrackingHandler.instance()
+    track_list = tracker.track_list()
 
     return track_list
 

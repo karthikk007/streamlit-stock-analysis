@@ -1,5 +1,6 @@
-from cache_handler.cache import Cache
-from cache_handler.cache_data.cache_data import StockCacheData, Encoder
+from data_models.stock_data_cache_model import StockDataCacheModel
+from data_models.stock_data_cache_model import Encoder
+from cache.cache import Cache
 
 import datetime
 import os
@@ -8,22 +9,20 @@ import pandas as pd
 
 class StockDataCache(Cache):
     name = 'stock_data_cache'
-    dir_path = 'app/data_source/data_cache/.{}'.format(name)
+    dir_path = 'app/cache/.data_cache/.{}'.format(name)
     file_name = '{}.json'.format('stock_cache')
 
     def __init__(self) -> None:
         super().__init__()
 
 
-    def get_relative_path(self, symbol):
-        return '{}/{}'.format('data_source/data_cache/.stock_data', symbol)
-
-
     def get_file_name(self, symbol, key):
         return '{}.{}.pickle'.format(key, symbol)
 
+
     def get_directory_for(self, symbol):
         return os.path.join(self.absolute_cache_dir(), symbol)
+
 
     def get_file_path_for(self, symbol, key):
         directory = self.get_directory_for(symbol)
@@ -33,29 +32,6 @@ class StockDataCache(Cache):
         os.mkdir(directory) if not os.path.exists(directory) else None
 
         return file
-        
-
-    def fetch_from_cache(self, symbol, key):
-
-        frame = self.cache.get(symbol)
-
-        if frame is None:
-            print('cache miss for', symbol)
-            return None
-
-        value = frame.get(key)
-        cache_data = None
-
-        if value is not None:
-            cache_data = StockCacheData.from_json(value)
-
-        if cache_data is None or not os.path.exists(cache_data.path):
-            print('[-------------------- StockDataCache fetch_from_cache ---- cache miss ----')
-            return None
-        else:
-            print('[-------------------- StockDataCache fetch_from_cache ++++ cache hit ++++')
-            data = pd.read_pickle(cache_data.path)
-            return data
             
 
     def update_cache(self, symbol, key, data, start: datetime, end: datetime):
@@ -66,7 +42,7 @@ class StockDataCache(Cache):
 
         frame = self.cache.get(symbol)
 
-        cache_data = StockCacheData(symbol, start, end, path)
+        cache_data = StockDataCacheModel(symbol, start, end, path)
         cache_data_dict = cache_data.__dict__
 
         if frame is None:
@@ -84,7 +60,7 @@ class StockDataCache(Cache):
         cache_file = self.absolute_file_path()
 
         self.cache = dict(sorted(self.cache.items()))
-        os.remove(cache_file) if os.path.exists(cache_file) else None
+        # os.remove(cache_file) if os.path.exists(cache_file) else None
 
         with open(cache_file, 'w') as f:
             json.dump(self.cache, f, indent=4, cls=Encoder)
@@ -128,3 +104,6 @@ class StockDataCache(Cache):
         print('\tticker = {}\tobjects = {}'.format(ticker_count, objects_count))
         print('----------------------------------------\n')
     
+
+    def get_data(self, path):
+        return pd.read_pickle(path)

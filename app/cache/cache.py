@@ -1,19 +1,38 @@
-from cache_handler.cache import Cache
 
 import os
 import json
 
-class StockTrackerCache(Cache):
-    name = 'stock_tracker_config'
-    dir_path = 'app/config/.config_data/.{}'.format(name)
-    file_name = '{}.json'.format('track_list')
+
+class Cache(object):
+    name = 'cache'
+    dir_path = 'app/cache/.data_cache/.{}'.format(name)
+    file_name = '{}.json'.format('cache')
 
     def __init__(self) -> None:
-        super().__init__()
+        self.cache = {}
+        self.load_cache()
+
+    def absolute_cache_dir(self):
+        file_path = '{}'.format(self.dir_path)
+        directory = os.path.join(os.getcwd(), file_path) 
+
+        if not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
+
+        return directory
+
+
+    def absolute_file_path(self):
+        dir = self.absolute_cache_dir()
+        file = os.path.join(dir, self.file_name)
+
+        return file
+
 
     def update_cache(self, dict):
         self.cache = dict
         self.save_cache()
+
 
     def save_cache(self):
         print('[-------------------- save_cache', self.name)
@@ -36,16 +55,19 @@ class StockTrackerCache(Cache):
                 self.cache = json.load(f)
                 # self.cache = pickle.load(f)
 
-            dict = self.cache
-
             print('load_dictionary =========', self.name)
 
             self.perform_cache_eviction()
         else:
             print('Cache file not found at', cache_file)
+            print('Creating one for you')
+            with open(cache_file,'a+') as f:
+                json.dump(self.cache, f, indent=4)
+
 
     def perform_cache_eviction(self):
         self.print_cache_stats()
+
 
     def print_cache_stats(self):
         ticker_count = 0
@@ -60,4 +82,9 @@ class StockTrackerCache(Cache):
         print('----------------------------------------')
         print('\tticker = {}'.format(ticker_count))
         print('----------------------------------------\n')
+
+
+      
+
+
 

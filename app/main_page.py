@@ -1,12 +1,15 @@
 # Contents of ~/my_app/main_page.py
 
 import streamlit as st
-from stock_handler.stock_ticker_data import StockTickerData
-from stock_handler.stock import StockData
-from config.stock_tracker import StockTracker
-from stock_handler.stock import Stock
 import datetime
+
 from dateutil.relativedelta import relativedelta
+
+from cache_handler.stock_tracker_handler import StockTrackingHandler
+from data_models.stock_data_view_model import StockDataViewModel
+from data_models.ticker_data_model import TickerDataModel
+from data_processor.stock_data_processor import StockDataProcessor
+
 
 APP_NAME = "Stock App!"
 USING_DEFAULT_LIST = True
@@ -157,10 +160,10 @@ def show_stock():
     ) 
 
     # stock = Stock(symbol='ITC.NS', start=start, end=end)
-    desc = track_list[ticker] if len(track_list) > 0 else ''
-    ticker_data = StockTickerData(ticker, desc)
-    stock_data = StockData(ticker=ticker_data, key=range_key, start=start, end=end)
-    stock = Stock(stock_data)
+    name = track_list[ticker] if len(track_list) > 0 else ''
+    ticker_data = TickerDataModel(ticker, name)
+    stock_data = StockDataViewModel(ticker=ticker_data, key=range_key, start=start, end=end)
+    stock = StockDataProcessor(stock_data)
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):
@@ -185,8 +188,8 @@ def show_stock():
         st.write(stock.stock_data.data)
 
 def get_track_list():
-    tracker = StockTracker()
-    track_list = tracker.track_list
+    tracker = StockTrackingHandler.instance()
+    track_list = tracker.track_list()
 
     return track_list
 

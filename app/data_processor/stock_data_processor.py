@@ -4,24 +4,23 @@ import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
 
+from data_fetcher.stock_data_fetcher import StockDataFetcher
+
 from graph_utils.plot_stock import plot_macd
-from data_handler.stock_data_fetcher import StockDataFetcher
 from graph_utils.plot_stock import UP_COLOR, DOWN_COLOR
 
-from stock_handler.stock_data import StockData
+from data_models.stock_data_view_model import StockDataViewModel
 
 
-data_fetcher = StockDataFetcher()
-
-
-class Stock():
+class StockDataProcessor():
     """
     This class enables data loading, plotting and statistical analysis of a given stock,
      upon initialization load a sample of data to check if stock exists. 
         
     """
 
-    def __init__(self, stock_data: StockData):
+    def __init__(self, stock_data: StockDataViewModel):
+        self.data_fetcher = StockDataFetcher()
         self.stock_data = stock_data
 
     # @st.cache(show_spinner=True) #Using st.cache allows st to load the data once and cache it. 
@@ -29,7 +28,7 @@ class Stock():
         ticker = self.stock_data.ticker
         symbol = ticker.symbol + '.NS'
         key = self.stock_data.key
-        data = data_fetcher.load_data(symbol, key, self.stock_data.start, self.stock_data.end, inplace) 
+        data = self.data_fetcher.load_data(self.stock_data, inplace) 
 
         data = data.dropna()
 

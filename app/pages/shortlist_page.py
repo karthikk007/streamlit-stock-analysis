@@ -1,29 +1,26 @@
 # Contents of ~/my_app/pages/page_2.py
 import streamlit as st
-from config.stock_tracker import StockTracker
-from data_handler.ticker_data_fetcher import TickerDataFetcher
+
 import pandas as pd
+from cache_handler.stock_tracker_handler import StockTrackingHandler
+
+from data_fetcher.ticker_data_fetcher import TickerDataFetcher
 
 def app():
     st.markdown("# Shortlist ❄️")
     st.sidebar.markdown("# Shortlist ❄️")
 
     ticker_data_fetcher = TickerDataFetcher()
-    tracker = StockTracker()
+    tracker = StockTrackingHandler.instance()
 
     with st.spinner('loading...'):
         ticker_data_fetcher.load_ticker_list()
 
-        df = pd.DataFrame(ticker_data_fetcher.all_stock_codes.items())
-        header_row = df.iloc[0]
-        df2 = pd.DataFrame(df.values[1:], columns=header_row)
 
-        # st.table(df2)
-        	
-        symbol_dict = df2.set_index('SYMBOL').to_dict()['NAME OF COMPANY']
+        symbol_dict = ticker_data_fetcher.get_df_dict()
 
-        list_to_add = filter_tracked_list(symbol_dict, tracker.track_list)
-        list_to_delete = filter_delete_list(symbol_dict, tracker.track_list)
+        list_to_add = filter_tracked_list(symbol_dict, tracker.track_list())
+        list_to_delete = filter_delete_list(symbol_dict, tracker.track_list())
 
         add_tab, delete_tab = st.tabs(["Select", "Delete"])
 
@@ -34,7 +31,7 @@ def app():
             add_delete_tab_items(tracker, symbol_dict, list_to_delete)
 
 
-def add_add_tab_items(tracker, symbol_dict, list_to_add):
+def add_add_tab_items(tracker: StockTrackingHandler, symbol_dict, list_to_add):
     options = st.multiselect(
         'Stocks to track',
         list(list_to_add),
@@ -47,15 +44,15 @@ def add_add_tab_items(tracker, symbol_dict, list_to_add):
         filtered_dict = dict(filter(lambda item: item[1] in options, symbol_dict.items())) 
 
         tracker.add_stocks(filtered_dict)
-        tracker.save_list()
+        tracker.save()
         st.write('Saved!')
 
         st.experimental_rerun()
 
-    st.write('Track list:', tracker.track_list)
+    st.write('Track list:', tracker.track_list())
 
 
-def add_delete_tab_items(tracker, symbol_dict, list_to_delete):
+def add_delete_tab_items(tracker: StockTrackingHandler, symbol_dict, list_to_delete):
     options = st.multiselect(
         'Stocks to untrack',
         list(list_to_delete),
@@ -68,12 +65,12 @@ def add_delete_tab_items(tracker, symbol_dict, list_to_delete):
         filtered_dict = dict(filter(lambda item: item[1] in options, symbol_dict.items())) 
 
         tracker.remove_stocks(filtered_dict)
-        tracker.save_list()
+        tracker.save()
         st.write('Deleted!')
 
         st.experimental_rerun()
 
-    st.write('Track list:', tracker.track_list)
+    st.write('Track list:', tracker.track_list())
 
 
 def filter_tracked_list(source_list, track_list):

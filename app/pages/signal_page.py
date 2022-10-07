@@ -5,10 +5,7 @@ import pandas as pd
 from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
-from config.stock_tracker import StockTracker
-from stock_handler.stock_signals import StockSignalsData
-
-from stock_handler.stock_signals import StockSignals
+from data_processor.stock_signals_processor import StockSignalProcessor, StockSignalsData
 
 
 
@@ -19,7 +16,7 @@ def app():
 
     buy_signal_tab, sell_signal_tab = st.tabs(["Buy", "Sell"])
 
-    stockSignals = StockSignals()
+    stockSignals = StockSignalProcessor()
 
     with st.spinner('Loading data...'):
         with buy_signal_tab:
@@ -29,13 +26,13 @@ def app():
             add_sell_signal_tab_items(stockSignals)
 
 
-def add_buy_signal_tab_items(stockSignals: StockSignals):
+def add_buy_signal_tab_items(stockSignals: StockSignalsData):
     stockSignals.process_records()
     # st.json(stockSignals.buy_signals)
     add_selection_table(stockSignals.buy_signals, 'buy_signal_table')
 
 
-def add_sell_signal_tab_items(stockSignals: StockSignals):
+def add_sell_signal_tab_items(stockSignals: StockSignalsData):
     stockSignals.process_records()
     # st.json(stockSignals.sell_signals)
     add_selection_table(stockSignals.sell_signals, 'sell_signal_table')
@@ -81,6 +78,7 @@ def add_selection_table(signals, key):
     st.write('## Selected')
     selected_row = grid_table["selected_rows"]
     st.dataframe(selected_row)
+
 
     # st.write(selected_row[0].keys())
 
