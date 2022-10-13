@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
 
-from data_fetcher.stock_data_fetcher import StockDataFetcher
+from services.data_fetcher.stock_data_fetcher import StockDataFetcher
 
 from graph_utils.plot_stock import plot_macd
 from graph_utils.plot_stock import UP_COLOR, DOWN_COLOR

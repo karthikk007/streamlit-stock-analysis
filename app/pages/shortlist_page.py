@@ -2,9 +2,9 @@
 import streamlit as st
 
 import pandas as pd
-from cache_handler.stock_tracker_handler import StockTrackingHandler
+from services.cache_handler.stock_tracker_handler import StockTrackingHandler
 
-from data_fetcher.ticker_data_fetcher import TickerDataFetcher
+from services.data_fetcher.ticker_data_fetcher import TickerDataFetcher
 
 def app():
     st.markdown("# Shortlist ❄️")

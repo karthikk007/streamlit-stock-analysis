@@ -35,4 +35,7 @@ class Encoder(json.JSONEncoder):
         if isinstance(o, datetime.datetime):
             return o.isoformat()
 
-        return json.JSONEncoder.default(self, o)
+        if isinstance(o, datetime.date):
+            return o.isoformat()
+
+        return o.__dict__

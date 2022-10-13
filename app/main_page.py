@@ -5,7 +5,7 @@ import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from cache_handler.stock_tracker_handler import StockTrackingHandler
+from services.cache_handler.stock_tracker_handler import StockTrackingHandler
 from data_models.stock_data_view_model import StockDataViewModel
 from data_models.ticker_data_model import TickerDataModel
 from data_processor.stock_data_processor import StockDataProcessor
@@ -14,9 +14,12 @@ from data_processor.stock_data_processor import StockDataProcessor
 APP_NAME = "Stock App!"
 USING_DEFAULT_LIST = True
 
+st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
+st.sidebar.title = APP_NAME
+
 def app():
-    st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
-    st.sidebar.title = APP_NAME
+    # st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
+    # st.sidebar.title = APP_NAME
 
     st.markdown("# 🎈 Stock forecast dashboard 📈")
     st.sidebar.markdown("# Main page 🎈")

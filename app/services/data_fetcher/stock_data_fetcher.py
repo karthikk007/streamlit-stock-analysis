@@ -1,5 +1,6 @@
-from data_fetcher.data_fetcher import DataFetcher
-from cache_handler.stock_data_handler import StockDataHandler
+ 
+from .data_fetcher import DataFetcher
+from services.cache_handler.stock_data_handler import StockDataHandler
 from data_models.stock_data_view_model import StockDataViewModel
 
 import datetime

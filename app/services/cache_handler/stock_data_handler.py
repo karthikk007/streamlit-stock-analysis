@@ -3,7 +3,7 @@ import datetime
 from data_models.stock_data_cache_model import StockDataCacheModel
 
 from creation_pattern.singletion import SingletonDoubleChecked
-from cache.stock_data_cache import StockDataCache
+from services.cache.stock_data_cache import StockDataCache
 
 
 class StockDataHandler(SingletonDoubleChecked):
@@ -28,10 +28,10 @@ class StockDataHandler(SingletonDoubleChecked):
             cache_data = StockDataCacheModel.from_json(value)
 
         if cache_data is None or not os.path.exists(cache_data.path):
-            print('[-------------------- StockDataCache fetch_from_cache ---- cache miss ----')
+            print('[-------------------- StockDataCache fetch_from_cache ---- cache miss ---- ', symbol)
             return None
         else:
-            print('[-------------------- StockDataCache fetch_from_cache ++++ cache hit ++++')
+            print('[-------------------- StockDataCache fetch_from_cache ++++ cache hit ++++ ', symbol)
             data = self.data_cache.get_data(cache_data.path)
             return data
 

@@ -1,0 +1,314 @@
+{
+    "ABB": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ABB",
+            "name": "ABB India Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "ADANIENT": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ADANIENT",
+            "name": "Adani Enterprises Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "ADANIPORTS": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ADANIPORTS",
+            "name": "Adani Ports and Special Economic Zone Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "ADANIPOWER": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ADANIPOWER",
+            "name": "Adani Power Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "ADANITRANS": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ADANITRANS",
+            "name": "Adani Transmission Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "AXISBANK": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "AXISBANK",
+            "name": "Axis Bank Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "BAJAJ-AUTO": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "BAJAJ-AUTO",
+            "name": "Bajaj Auto Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "BEL": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "BEL",
+            "name": "Bharat Electronics Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "BERGEPAINT": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "BERGEPAINT",
+            "name": "Berger Paints (I) Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "BPCL": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "BPCL",
+            "name": "Bharat Petroleum Corporation Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "DLF": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "DLF",
+            "name": "DLF Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "GODREJCP": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "GODREJCP",
+            "name": "Godrej Consumer Products Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "GRASIM": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "GRASIM",
+            "name": "Grasim Industries Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "HDFCLIFE": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "HDFCLIFE",
+            "name": "HDFC Life Insurance Company Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "HEROMOTOCO": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "HEROMOTOCO",
+            "name": "Hero MotoCorp Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "HINDZINC": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "HINDZINC",
+            "name": "Hindustan Zinc Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "ICICIBANK": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ICICIBANK",
+            "name": "ICICI Bank Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "ICICIGI": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ICICIGI",
+            "name": "ICICI Lombard General Insurance Company Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "ICICIPRULI": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ICICIPRULI",
+            "name": "ICICI Prudential Life Insurance Company Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "INDIGO": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "INDIGO",
+            "name": "InterGlobe Aviation Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "IOC": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "IOC",
+            "name": "Indian Oil Corporation Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "JSWENERGY": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "JSWENERGY",
+            "name": "JSW Energy Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "JSWSTEEL": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "JSWSTEEL",
+            "name": "JSW Steel Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "KOTAKBANK": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "KOTAKBANK",
+            "name": "Kotak Mahindra Bank Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "LICI": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "LICI",
+            "name": "Life Insurance Corporation Of India"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "MARUTI": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "MARUTI",
+            "name": "Maruti Suzuki India Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "NYKAA": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "NYKAA",
+            "name": "FSN E-Commerce Ventures Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "PIDILITIND": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "PIDILITIND",
+            "name": "Pidilite Industries Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "SBICARD": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SBICARD",
+            "name": "SBI Cards and Payment Services Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "SBILIFE": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SBILIFE",
+            "name": "SBI Life Insurance Company Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "SBIN": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SBIN",
+            "name": "State Bank of India"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "SHREECEM": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SHREECEM",
+            "name": "SHREE CEMENT LIMITED"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "SIEMENS": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SIEMENS",
+            "name": "Siemens Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "SRF": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SRF",
+            "name": "SRF Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "TATAELXSI": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "TATAELXSI",
+            "name": "Tata Elxsi Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "TATAMOTORS": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "TATAMOTORS",
+            "name": "Tata Motors Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "TATAMTRDVR": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "TATAMTRDVR",
+            "name": "Tata Motors Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "TATAPOWER": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "TATAPOWER",
+            "name": "Tata Power Company Limited"
+        },
+        "timestamp": "2022-10-13"
+    },
+    "TECHM": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "TECHM",
+            "name": "Tech Mahindra Limited"
+        },
+        "timestamp": "2022-10-13"
+    }
+}

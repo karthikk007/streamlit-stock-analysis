@@ -12,6 +12,6 @@ class SnoozeTrackerDataModel(DataModel):
     @staticmethod
     def from_json(dict):
         duration = dict['duration']
-        ticker = dict['ticker']
+        ticker = TickerDataModel.from_json(dict['ticker'])
 
-        return SnoozeTrackerDataModel(duration, ticker)
+        return SnoozeTrackerDataModel(ticker)

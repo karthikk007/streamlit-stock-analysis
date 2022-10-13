@@ -5,7 +5,7 @@ import json
 
 class Cache(object):
     name = 'cache'
-    dir_path = 'app/cache/.data_cache/.{}'.format(name)
+    dir_path = 'app/services/cache/.data_cache/.{}'.format(name)
     file_name = '{}.json'.format('cache')
 
     def __init__(self) -> None:

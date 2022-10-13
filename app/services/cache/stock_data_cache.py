@@ -1,15 +1,16 @@
 from data_models.stock_data_cache_model import StockDataCacheModel
 from data_models.stock_data_cache_model import Encoder
-from cache.cache import Cache
+from services.cache.cache import Cache
 
-import datetime
+import shutil
+from datetime import date, datetime, timedelta
 import os
 import json
 import pandas as pd
 
 class StockDataCache(Cache):
     name = 'stock_data_cache'
-    dir_path = 'app/cache/.data_cache/.{}'.format(name)
+    dir_path = 'app/services/cache/.data_cache/.{}'.format(name)
     file_name = '{}.json'.format('stock_cache')
 
     def __init__(self) -> None:
@@ -21,7 +22,13 @@ class StockDataCache(Cache):
 
 
     def get_directory_for(self, symbol):
-        return os.path.join(self.absolute_cache_dir(), symbol)
+        directory = self.absolute_cache_dir()
+        directory = os.path.join(directory, '.stocks')
+
+        if not os.path.exists(directory):
+            os.makedirs(directory, exist_ok=True)
+
+        return os.path.join(directory, symbol)
 
 
     def get_file_path_for(self, symbol, key):
@@ -66,7 +73,6 @@ class StockDataCache(Cache):
             json.dump(self.cache, f, indent=4, cls=Encoder)
             # pickle.dump(self.cache, f)
 
-        print(self.cache.keys())
 
     def load_cache(self):
         cache_file = self.absolute_file_path()
@@ -86,8 +92,46 @@ class StockDataCache(Cache):
 
 
     def perform_cache_eviction(self):
+
+        # print(json.dumps(self.cache, indent=4))
+
+        if len(self.cache):
+            eviction_list = []
+            file_list = []
+
+            for key, value in self.cache.items():
+                for sub_key, sub_value in value.items():
+                    end = sub_value['end']
+                    timestamp = datetime.fromisoformat(end)
+                    
+                    today = datetime.today()
+
+                    diff = today - timestamp
+
+                    if diff.days > 0:
+                        eviction_list.append(key)
+                        file_list.append(sub_value['path'])
+
+            print(eviction_list)
+            print(file_list)
+
+            if len(eviction_list):
+                [self.delete_key(x) for x in eviction_list]
+                [self.remove_directory(x) for x in file_list]
+
+                self.save_cache()
+
         self.print_cache_stats()
 
+
+    def delete_key(self, key):
+        del self.cache[key]
+
+
+    def remove_directory(self, path):
+        head, tail = os.path.split(path)
+
+        shutil.rmtree(head)
 
     def print_cache_stats(self):
         ticker_count = 0

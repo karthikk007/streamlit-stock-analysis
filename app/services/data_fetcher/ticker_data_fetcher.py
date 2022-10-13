@@ -1,5 +1,5 @@
-from data_fetcher.data_fetcher import DataFetcher
-from cache_handler.ticker_data_handler import TickerDataHandler
+from services.data_fetcher.data_fetcher import DataFetcher
+from services.cache_handler.ticker_data_handler import TickerDataHandler
 
 from nsetools import Nse
 
