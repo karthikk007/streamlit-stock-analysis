@@ -6,6 +6,10 @@ from services.cache_handler.stock_tracker_handler import StockTrackingHandler
 
 from services.data_fetcher.ticker_data_fetcher import TickerDataFetcher
 
+APP_NAME = "Stock App!"
+st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
+st.sidebar.title = APP_NAME
+
 def app():
     st.markdown("# Shortlist ❄️")
     st.sidebar.markdown("# Shortlist ❄️")
@@ -41,7 +45,8 @@ def add_add_tab_items(tracker: StockTrackingHandler, symbol_dict, list_to_add):
     
     if st.button('Save'):
         # filtered_dict = dict(filter(lambda item: item[0] in options, symbol_dict)) 
-        filtered_dict = dict(filter(lambda item: item[1] in options, symbol_dict.items())) 
+        selected_keys = list(map(lambda x: x.split().pop().replace('(','').replace(')',''), options))
+        filtered_dict = dict(filter(lambda item: item[0] in selected_keys, symbol_dict.items())) 
 
         tracker.add_stocks(filtered_dict)
         tracker.save()
@@ -62,7 +67,8 @@ def add_delete_tab_items(tracker: StockTrackingHandler, symbol_dict, list_to_del
     
     if st.button('Delete'):
         # filtered_dict = dict(filter(lambda item: item[0] in options, symbol_dict)) 
-        filtered_dict = dict(filter(lambda item: item[1] in options, symbol_dict.items())) 
+        selected_keys = list(map(lambda x: x.split().pop().replace('(','').replace(')',''), options))
+        filtered_dict = dict(filter(lambda item: item[0] in selected_keys, symbol_dict.items())) 
 
         tracker.remove_stocks(filtered_dict)
         tracker.save()
@@ -74,9 +80,13 @@ def add_delete_tab_items(tracker: StockTrackingHandler, symbol_dict, list_to_del
 
 
 def filter_tracked_list(source_list, track_list):
-    return list(filter(lambda x: x not in track_list.values(), source_list.values()))
+    keys = list(filter(lambda x: x not in track_list.keys(), source_list.keys()))
+    values = list(map(lambda x: '{} ({})'.format(source_list[x], x), keys))
+    return values
 
 def filter_delete_list(source_list, track_list):
-    return track_list.values()
+    keys = track_list.keys()
+    values = list(map(lambda x: '{} ({})'.format(source_list[x], x), keys))
+    return values
 
 app()

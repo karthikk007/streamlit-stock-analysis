@@ -40,18 +40,26 @@ class StockSignalProcessor(object):
         stock_list = get_ticker_list_for_category(category)
 
         # print(json.dumps(stock_list, indent=4)) 
-    
+        all_stock_list = stock_list
+        skipped_list = []
+        fetch_list = []
+
+
         for item in stock_list:
             ticker = item['Ticker']
 
             stock_signal = self.populate_stock_signal(item)
 
             if stock_signal is None:
+                skipped_list.append(ticker)
                 continue
 
+            fetch_list.append(ticker)
             self.data[ticker] = stock_signal
 
         self.process_signals()
+
+        return (all_stock_list, skipped_list, fetch_list)
 
     def process_signals(self):
         for key, value in self.data.items():
@@ -110,6 +118,12 @@ class StockSignalProcessor(object):
         stock_processor = StockDataProcessor(stock_data)
         
         data = stock_processor.load_data()
+
+        if len(data) < 40:
+            print('\n{} has {} only entries... Skipping....................................\n'.format(ticker.symbol, len(data)))
+            return None
+
+
         stock_processor.add_indicators()
 
         stock_signal = StockSignalsData(stock_processor.stock_data, item)

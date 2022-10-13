@@ -37,13 +37,29 @@ def app():
         category = st.session_state['category_list']
 
         stockSignals = StockSignalProcessor()
-        stockSignals.process_records(category)
+        (all_stock_list, skipped_list, fetch_list) = stockSignals.process_records(category)
 
         add_sell_signal_tab_items(stockSignals)
 
+        stock_list = stockSignals.get_stock_list(category)
+
         if st.checkbox('Show raw data'):
             st.subheader('Raw data')
-            st.write(stockSignals.get_stock_list(category))
+            st.table(stock_list)
+
+        st.write(len(stock_list))
+
+        st.write('total_count = ', len(all_stock_list))
+
+        st.write('skipped_count = ', len(skipped_list))
+        if st.checkbox('Show skipped list'):
+            st.subheader('skipped list')
+            st.table(skipped_list)
+
+        st.write('fetch_count = ', len(fetch_list))
+        if st.checkbox('Show fetched list'):
+            st.subheader('fetched list')
+            st.table(fetch_list)
 
 
 

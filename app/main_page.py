@@ -1,9 +1,11 @@
 # Contents of ~/my_app/main_page.py
 
+from operator import index
 import streamlit as st
 import datetime
 
 from dateutil.relativedelta import relativedelta
+from services.cache.app_state_cache import AppStateCache
 
 from services.cache_handler.stock_tracker_handler import StockTrackingHandler
 from data_models.stock_data_view_model import StockDataViewModel
@@ -16,6 +18,8 @@ USING_DEFAULT_LIST = True
 
 st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
 st.sidebar.title = APP_NAME
+
+app_state = AppStateCache()
 
 def app():
     # st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="expanded")
@@ -48,12 +52,25 @@ def show_ticker_selector():
 
     if len(track_list.values()) > 0:
         USING_DEFAULT_LIST = False
-        TICKERS = track_list.values()
+        TICKERS = list(track_list.values())
+
+
+    selected_ticker = None
+
+    key = 'main_ticker_index'
+    if key in app_state.cache:
+        selected_ticker = app_state.cache[key]
 
     select_index = 0
+    if selected_ticker:
+        select_index = TICKERS.index(selected_ticker)
 
     # Select ticker
-    st.sidebar.selectbox('Select ticker', sorted(TICKERS), index=select_index, key='ticker')
+    st.sidebar.selectbox('Select ticker', sorted(TICKERS), index=select_index, key='ticker', on_change=did_change_ticker)
+
+def did_change_ticker():
+    app_state.cache['main_ticker_index'] = st.session_state['ticker']
+    app_state.save_cache()
 
 def show_date_picker():
     with st.sidebar.container():
@@ -174,6 +191,9 @@ def show_stock():
 
     if len(stock.stock_data.data) < 30:
         st.write('{} has {} only entries...'.format(ticker, len(stock.stock_data.data)))
+
+        e = RuntimeError('{} has {} only entries...'.format(ticker, len(stock.stock_data.data)))
+        st.exception(e)
         
     st.success('Data Loaded.')
 
