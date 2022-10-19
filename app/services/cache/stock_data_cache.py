@@ -112,8 +112,7 @@ class StockDataCache(Cache):
                         eviction_list.append(key)
                         file_list.append(sub_value['path'])
 
-            print(eviction_list)
-            print(file_list)
+            print('eviction_list = ', eviction_list)
 
             if len(eviction_list):
                 [self.delete_key(x) for x in eviction_list]
