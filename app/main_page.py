@@ -43,6 +43,23 @@ def app():
     
     
 def show_ticker_selector():
+
+    selected_ticker = None
+    TICKERS = get_tickers()
+
+    key = 'main_ticker_index'
+    if key in app_state.cache:
+        selected_ticker = app_state.cache[key]
+
+    select_index = 0
+    if selected_ticker:
+        select_index = TICKERS.index(selected_ticker)
+
+    # Select ticker
+    st.sidebar.selectbox('Select ticker', TICKERS, index=select_index, key='ticker', on_change=did_change_ticker)
+
+
+def get_tickers():
     global USING_DEFAULT_LIST
 
     track_list = get_track_list()
@@ -54,19 +71,11 @@ def show_ticker_selector():
         USING_DEFAULT_LIST = False
         TICKERS = list(track_list.values())
 
+    TICKERS = sorted(TICKERS)
 
-    selected_ticker = None
-
-    key = 'main_ticker_index'
-    if key in app_state.cache:
-        selected_ticker = app_state.cache[key]
-
-    select_index = 0
-    if selected_ticker:
-        select_index = TICKERS.index(selected_ticker)
-
-    # Select ticker
-    st.sidebar.selectbox('Select ticker', sorted(TICKERS), index=select_index, key='ticker', on_change=did_change_ticker)
+    # keys = list(filter(lambda x: x not in track_list.keys(), source_list.keys()))
+    # values = list(map(lambda x: '{} ({})'.format(source_list[x], x), keys))
+    return TICKERS
 
 def did_change_ticker():
     app_state.cache['main_ticker_index'] = st.session_state['ticker']
