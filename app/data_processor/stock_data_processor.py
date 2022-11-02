@@ -28,7 +28,11 @@ class StockDataProcessor():
         ticker = self.stock_data.ticker
         symbol = ticker.symbol + '.NS'
         key = self.stock_data.key
-        data = self.data_fetcher.load_data(self.stock_data, inplace) 
+
+        try:
+            data = self.data_fetcher.load_data(self.stock_data, inplace) 
+        except Exception as e:
+            raise e
 
         data = data.dropna()
 

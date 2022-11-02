@@ -196,7 +196,10 @@ def show_stock():
     # stock = Stock(symbol='RELIANCE.NS', start=start, end=end)
 
     with st.spinner('Loading data...'):
-        stock.load_data()
+        try:
+            stock.load_data()
+        except Exception as e:
+            raise e
 
     if len(stock.stock_data.data) < 30:
         st.write('{} has {} only entries...'.format(ticker, len(stock.stock_data.data)))

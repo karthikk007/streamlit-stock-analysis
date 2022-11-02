@@ -76,6 +76,11 @@ class StockSignalProcessor(object):
         df = data.stock.data
         df_lookup = df.iloc[-self.signal_delta:]
 
+        sell_lookup = df.iloc[-5:]
+        for x in sell_lookup["sell_signal"]:
+            if x:
+                return is_buy_signal
+
         buy_count = 0
         for x in df_lookup["buy_signal"]:
             if x:
@@ -92,6 +97,11 @@ class StockSignalProcessor(object):
 
         df = data.stock.data
         df_lookup = df.iloc[-self.signal_delta:]
+
+        buy_lookup = df.iloc[-5:]
+        for x in buy_lookup["buy_signal"]:
+            if x:
+                return is_sell_signal
 
         sell_count = 0
         for x in df_lookup["sell_signal"]:

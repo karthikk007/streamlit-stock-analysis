@@ -47,8 +47,9 @@ class StockDataFetcher(DataFetcher):
             try:
                 assert len(data) > 0
                 self.cache_handler.update_cache(symbol, key, data, start, end)
-            except AssertionError:
+            except AssertionError as e:
                 print("Cannot fetch data, check spelling or time window")
+                raise AssertionError("Cannot fetch data, check spelling or time window")
 
 
         data.reset_index(inplace=True)
