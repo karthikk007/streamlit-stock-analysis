@@ -4,6 +4,7 @@ import json
 
 
 class Cache(object):
+    debug = False
     name = 'cache'
     dir_path = 'app/services/cache/.data_cache/.{}'.format(name)
     file_name = '{}.json'.format('cache')

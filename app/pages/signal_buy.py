@@ -129,9 +129,11 @@ def add_selection_table(signals, key):
 
     gd = GridOptionsBuilder.from_dataframe(df)
     gd.configure_selection(selection_mode='multiple', use_checkbox=True)
+    gd.configure_default_column(min_column_width=250)
     gd.configure_auto_height(True)
     gd.configure_pagination(True, True, 20)
     gridoptions = gd.build()
+    
 
     grid_table = AgGrid(df, gridOptions=gridoptions,
         update_mode=GridUpdateMode.MANUAL, key=key, reload_data=True)

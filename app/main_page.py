@@ -52,8 +52,14 @@ def show_ticker_selector():
         selected_ticker = app_state.cache[key]
 
     select_index = 0
-    if selected_ticker:
-        select_index = TICKERS.index(selected_ticker)
+
+    try:
+        if selected_ticker:
+            select_index = TICKERS.index(selected_ticker)
+    except Exception as e:
+        print(e)
+
+    print('fallback: select_index = ', select_index)
 
     # Select ticker
     st.sidebar.selectbox('Select ticker', TICKERS, index=select_index, key='ticker', on_change=did_change_ticker)

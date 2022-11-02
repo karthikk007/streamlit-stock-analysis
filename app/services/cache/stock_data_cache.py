@@ -84,7 +84,9 @@ class StockDataCache(Cache):
 
             dict = self.cache
 
-            print('load_dictionary_index =========', dict.keys())
+            if self.debug:
+                print('\n\n')
+                print('load_dictionary_index =========', dict.keys())
 
             self.perform_cache_eviction()
         else:
@@ -120,7 +122,8 @@ class StockDataCache(Cache):
 
                 self.save_cache()
 
-        self.print_cache_stats()
+        if self.debug:
+            self.print_cache_stats()
 
 
     def delete_key(self, key):
