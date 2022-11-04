@@ -65,6 +65,7 @@ class StockDataProcessor():
         self.stock_data.data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
 
     def add_indicators(self):
+        print('adding indicators to ', self.stock_data.ticker.symbol)
 
         self.add_macd()
         self.add_rsi()

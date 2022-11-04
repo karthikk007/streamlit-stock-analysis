@@ -1,7 +1,7 @@
 ROOT=${WORKSPACE:-$(git rev-parse --show-toplevel)}
 DIR_APP="$ROOT/setup"
 DIR_VENV="$DIR_APP/venv"
-PYTHON="/usr/local/bin/python3"
+PYTHON="/usr/bin/python3"
 
 
 function setup_venv() {
