@@ -127,7 +127,11 @@ class StockSignalProcessor(object):
 
         stock_processor = StockDataProcessor(stock_data)
         
-        data = stock_processor.load_data()
+        try:
+            data = stock_processor.load_data()
+        except Exception as e:
+            print(e)
+            return None
 
         if len(data) < 40:
             print('\n{} has {} only entries... Skipping....................................\n'.format(ticker.symbol, len(data)))
