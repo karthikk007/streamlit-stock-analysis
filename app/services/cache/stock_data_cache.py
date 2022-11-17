@@ -112,7 +112,7 @@ class StockDataCache(Cache):
                 diff = today - timestamp
                 diff_hours = int(diff.seconds / 60 / 60)
 
-                if diff_hours >= 4:
+                if diff_hours >= 12:
                     eviction_list.append(key)
                     file_list.append(sub_value['path'])
 
