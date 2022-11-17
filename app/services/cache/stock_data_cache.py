@@ -57,6 +57,8 @@ class StockDataCache(Cache):
         else:
             frame[key] = cache_data_dict
 
+        frame['timestamp'] = datetime.now().isoformat()
+
         self.cache[symbol] = frame
 
         self.save_cache()
@@ -102,17 +104,17 @@ class StockDataCache(Cache):
             file_list = []
 
             for key, value in self.cache.items():
-                for sub_key, sub_value in value.items():
-                    end = sub_value['end']
-                    timestamp = datetime.fromisoformat(end)
-                    
-                    today = datetime.today()
+                stashed_time = value['timestamp']
+                timestamp = datetime.fromisoformat(stashed_time)
+                
+                today = datetime.today()
 
-                    diff = today - timestamp
+                diff = today - timestamp
+                diff_hours = int(diff.seconds / 60 / 60)
 
-                    if diff.days > 0:
-                        eviction_list.append(key)
-                        file_list.append(sub_value['path'])
+                if diff_hours >= 4:
+                    eviction_list.append(key)
+                    file_list.append(sub_value['path'])
 
             print('eviction_list = ', eviction_list)
 

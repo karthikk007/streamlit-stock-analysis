@@ -63,6 +63,14 @@
         },
         "timestamp": "2022-11-15"
     },
+    "CIPLA": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "CIPLA",
+            "name": "Cipla Limited"
+        },
+        "timestamp": "2022-11-17"
+    },
     "CLEAN": {
         "duration": "10d",
         "ticker": {
@@ -182,6 +190,14 @@
             "name": "Macrotech Developers Limited"
         },
         "timestamp": "2022-11-15"
+    },
+    "MARICO": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "MARICO",
+            "name": "Marico Limited"
+        },
+        "timestamp": "2022-11-17"
     },
     "METROBRAND": {
         "duration": "10d",
