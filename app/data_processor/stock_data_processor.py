@@ -148,25 +148,27 @@ class StockDataProcessor():
         df.loc[df['diff']<0, 'color'] = DOWN_COLOR
 
     def add_buy_signal(self):
+        buy_threshold = 20
         df = self.stock_data.data
 
         df.loc[
             np.logical_and(
                 df['rsi_8_b_40']==1,
-                df['stochk_14_3_3']<=25.0,
-                df['stochd_14_3_3']<=25.0,
+                df['stochk_14_3_3']<=buy_threshold,
+                df['stochd_14_3_3']<=buy_threshold,
             ), 'buy_signal'] = True
 
         df['buy_signal'].fillna(False, inplace=True)
 
     def add_sell_signal(self):
+        sell_threshold = 80
         df = self.stock_data.data
 
         df.loc[
             np.logical_and(
                 df['rsi_8_a_60']==1,
-                df['stochk_14_3_3']>=75.0,
-                df['stochd_14_3_3']>=75.0,
+                df['stochk_14_3_3']>=sell_threshold,
+                df['stochd_14_3_3']>=sell_threshold,
             ), 'sell_signal'] = True
 
         df['sell_signal'].fillna(False, inplace=True)

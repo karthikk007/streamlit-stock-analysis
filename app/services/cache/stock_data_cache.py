@@ -109,12 +109,27 @@ class StockDataCache(Cache):
                 
                 today = datetime.today()
 
+                print('----------------------')
+                print('key = ', key)
+                print("stashed_time = ", stashed_time)
+                print("today = ", today)
+
                 diff = today - timestamp
+
                 diff_hours = int(diff.seconds / 60 / 60)
 
-                if diff_hours >= 12:
+                print("diff = ", diff.days)
+                print("diff.seconds = ", diff.seconds)
+                print("diff_hours = ", diff_hours)
+
+                print(diff_hours)
+                if diff_hours >= 6 or diff.days > 1:
                     eviction_list.append(key)
-                    file_list.append(sub_value['path'])
+                    for sub_key, sub_value in value.items():
+                        if not sub_key == 'timestamp':
+                            file_list.append(sub_value['path'])
+
+                print('----------------------\n')
 
             print('eviction_list = ', eviction_list)
 
