@@ -7,13 +7,13 @@
         },
         "timestamp": "2022-11-21"
     },
-    "AAVAS": {
+    "AARTIIND": {
         "duration": "10d",
         "ticker": {
-            "symbol": "AAVAS",
-            "name": "Aavas Financiers Limited"
+            "symbol": "AARTIIND",
+            "name": "Aarti Industries Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
     },
     "ABFRL": {
         "duration": "10d",
@@ -21,7 +21,31 @@
             "symbol": "ABFRL",
             "name": "Aditya Birla Fashion and Retail Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
+    },
+    "ADANIGREEN": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ADANIGREEN",
+            "name": "Adani Green Energy Limited"
+        },
+        "timestamp": "2022-11-28"
+    },
+    "ADANIPOWER": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ADANIPOWER",
+            "name": "Adani Power Limited"
+        },
+        "timestamp": "2022-11-25"
+    },
+    "ADANITRANS": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ADANITRANS",
+            "name": "Adani Transmission Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "AGRITECH": {
         "duration": "10d",
@@ -39,21 +63,29 @@
         },
         "timestamp": "2022-11-21"
     },
-    "ANGELONE": {
+    "AMRUTANJAN": {
         "duration": "10d",
         "ticker": {
-            "symbol": "ANGELONE",
-            "name": "Angel One Limited"
+            "symbol": "AMRUTANJAN",
+            "name": "Amrutanjan Health Care Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
-    "ASIANPAINT": {
+    "ANDHRAPAP": {
         "duration": "10d",
         "ticker": {
-            "symbol": "ASIANPAINT",
-            "name": "Asian Paints Limited"
+            "symbol": "ANDHRAPAP",
+            "name": "ANDHRA PAPER LIMITED"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
+    },
+    "ARIHANTCAP": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ARIHANTCAP",
+            "name": "Arihant Capital Markets Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "ASTERDM": {
         "duration": "10d",
@@ -71,13 +103,45 @@
         },
         "timestamp": "2022-11-23"
     },
+    "AUROPHARMA": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "AUROPHARMA",
+            "name": "Aurobindo Pharma Limited"
+        },
+        "timestamp": "2022-11-28"
+    },
     "AWL": {
         "duration": "10d",
         "ticker": {
             "symbol": "AWL",
             "name": "Adani Wilmar Limited"
         },
-        "timestamp": "2022-11-18"
+        "timestamp": "2022-11-28"
+    },
+    "BAJAJ-AUTO": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "BAJAJ-AUTO",
+            "name": "Bajaj Auto Limited"
+        },
+        "timestamp": "2022-11-25"
+    },
+    "BAJAJFINSV": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "BAJAJFINSV",
+            "name": "Bajaj Finserv Limited"
+        },
+        "timestamp": "2022-11-28"
+    },
+    "BAJAJHLDNG": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "BAJAJHLDNG",
+            "name": "Bajaj Holdings & Investment Limited"
+        },
+        "timestamp": "2022-11-25"
     },
     "BAJFINANCE": {
         "duration": "10d",
@@ -101,7 +165,7 @@
             "symbol": "BANDHANBNK",
             "name": "Bandhan Bank Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "BASF": {
         "duration": "10d",
@@ -135,14 +199,6 @@
         },
         "timestamp": "2022-11-23"
     },
-    "CAMPUS": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "CAMPUS",
-            "name": "Campus Activewear Limited"
-        },
-        "timestamp": "2022-11-15"
-    },
     "CAMS": {
         "duration": "10d",
         "ticker": {
@@ -151,21 +207,13 @@
         },
         "timestamp": "2022-11-21"
     },
-    "CARBORUNIV": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "CARBORUNIV",
-            "name": "Carborundum Universal Limited"
-        },
-        "timestamp": "2022-11-15"
-    },
     "CENTURYPLY": {
         "duration": "10d",
         "ticker": {
             "symbol": "CENTURYPLY",
             "name": "Century Plyboards (India) Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "CENTURYTEX": {
         "duration": "10d",
@@ -189,7 +237,7 @@
             "symbol": "CIPLA",
             "name": "Cipla Limited"
         },
-        "timestamp": "2022-11-17"
+        "timestamp": "2022-11-28"
     },
     "CLEAN": {
         "duration": "10d",
@@ -197,7 +245,7 @@
             "symbol": "CLEAN",
             "name": "Clean Science and Technology Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "COALINDIA": {
         "duration": "10d",
@@ -206,14 +254,6 @@
             "name": "Coal India Limited"
         },
         "timestamp": "2022-11-23"
-    },
-    "COLPAL": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "COLPAL",
-            "name": "Colgate Palmolive (India) Limited"
-        },
-        "timestamp": "2022-11-18"
     },
     "CONCOR": {
         "duration": "10d",
@@ -229,23 +269,7 @@
             "symbol": "COROMANDEL",
             "name": "Coromandel International Limited"
         },
-        "timestamp": "2022-11-15"
-    },
-    "CROMPTON": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "CROMPTON",
-            "name": "Crompton Greaves Consumer Electricals Limited"
-        },
-        "timestamp": "2022-11-15"
-    },
-    "DCMSHRIRAM": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "DCMSHRIRAM",
-            "name": "DCM Shriram Limited"
-        },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "DEEPAKFERT": {
         "duration": "10d",
@@ -255,13 +279,21 @@
         },
         "timestamp": "2022-11-21"
     },
-    "DEVYANI": {
+    "DEEPAKNTR": {
         "duration": "10d",
         "ticker": {
-            "symbol": "DEVYANI",
-            "name": "Devyani International Limited"
+            "symbol": "DEEPAKNTR",
+            "name": "Deepak Nitrite Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
+    },
+    "DELHIVERY": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "DELHIVERY",
+            "name": "Delhivery Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "DIVISLAB": {
         "duration": "10d",
@@ -269,7 +301,7 @@
             "symbol": "DIVISLAB",
             "name": "Divi's Laboratories Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "DMART": {
         "duration": "10d",
@@ -277,7 +309,7 @@
             "symbol": "DMART",
             "name": "Avenue Supermarts Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
     },
     "EICHERMOT": {
         "duration": "10d",
@@ -285,7 +317,15 @@
             "symbol": "EICHERMOT",
             "name": "Eicher Motors Limited"
         },
-        "timestamp": "2022-11-18"
+        "timestamp": "2022-11-28"
+    },
+    "EKC": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "EKC",
+            "name": "Everest Kanto Cylinder Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "EMAMILTD": {
         "duration": "10d",
@@ -293,15 +333,15 @@
             "symbol": "EMAMILTD",
             "name": "Emami Limited"
         },
-        "timestamp": "2022-11-18"
+        "timestamp": "2022-11-28"
     },
-    "FINEORG": {
+    "FILATEX": {
         "duration": "10d",
         "ticker": {
-            "symbol": "FINEORG",
-            "name": "Fine Organic Industries Limited"
+            "symbol": "FILATEX",
+            "name": "Filatex India Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "FLUOROCHEM": {
         "duration": "10d",
@@ -325,7 +365,7 @@
             "symbol": "GLAND",
             "name": "Gland Pharma Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "GLAXO": {
         "duration": "10d",
@@ -333,7 +373,15 @@
             "symbol": "GLAXO",
             "name": "GlaxoSmithKline Pharmaceuticals Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
+    },
+    "GMRP&UI": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "GMRP&UI",
+            "name": "GMR Power and Urban Infra Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "GNFC": {
         "duration": "10d",
@@ -359,13 +407,21 @@
         },
         "timestamp": "2022-11-21"
     },
-    "HAPPSTMNDS": {
+    "GRINDWELL": {
         "duration": "10d",
         "ticker": {
-            "symbol": "HAPPSTMNDS",
-            "name": "Happiest Minds Technologies Limited"
+            "symbol": "GRINDWELL",
+            "name": "Grindwell Norton Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
+    },
+    "HATHWAY": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "HATHWAY",
+            "name": "Hathway Cable & Datacom Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "HATSUN": {
         "duration": "10d",
@@ -375,22 +431,6 @@
         },
         "timestamp": "2022-11-21"
     },
-    "HINDUNILVR": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "HINDUNILVR",
-            "name": "Hindustan Unilever Limited"
-        },
-        "timestamp": "2022-11-15"
-    },
-    "ICICIGI": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "ICICIGI",
-            "name": "ICICI Lombard General Insurance Company Limited"
-        },
-        "timestamp": "2022-11-18"
-    },
     "ICICIPRULI": {
         "duration": "10d",
         "ticker": {
@@ -398,6 +438,14 @@
             "name": "ICICI Prudential Life Insurance Company Limited"
         },
         "timestamp": "2022-11-21"
+    },
+    "IIFLSEC": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "IIFLSEC",
+            "name": "IIFL Securities Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "IMPEXFERRO": {
         "duration": "10d",
@@ -415,13 +463,13 @@
         },
         "timestamp": "2022-11-21"
     },
-    "INDUSINDBK": {
+    "INFIBEAM": {
         "duration": "10d",
         "ticker": {
-            "symbol": "INDUSINDBK",
-            "name": "IndusInd Bank Limited"
+            "symbol": "INFIBEAM",
+            "name": "Infibeam Avenues Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "IRCTC": {
         "duration": "10d",
@@ -431,6 +479,14 @@
         },
         "timestamp": "2022-11-23"
     },
+    "ISMTLTD": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "ISMTLTD",
+            "name": "ISMT Limited"
+        },
+        "timestamp": "2022-11-28"
+    },
     "JETFREIGHT": {
         "duration": "10d",
         "ticker": {
@@ -438,6 +494,14 @@
             "name": "Jet Freight Logistics Limited"
         },
         "timestamp": "2022-11-21"
+    },
+    "JISLJALEQS": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "JISLJALEQS",
+            "name": "Jain Irrigation Systems Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "JSWENERGY": {
         "duration": "10d",
@@ -453,15 +517,7 @@
             "symbol": "JUBLFOOD",
             "name": "Jubilant Foodworks Limited"
         },
-        "timestamp": "2022-11-18"
-    },
-    "KANSAINER": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "KANSAINER",
-            "name": "Kansai Nerolac Paints Limited"
-        },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "LIBAS": {
         "duration": "10d",
@@ -470,14 +526,6 @@
             "name": "Libas Consumer Products Limited"
         },
         "timestamp": "2022-11-23"
-    },
-    "LODHA": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "LODHA",
-            "name": "Macrotech Developers Limited"
-        },
-        "timestamp": "2022-11-15"
     },
     "M&M": {
         "duration": "10d",
@@ -495,13 +543,21 @@
         },
         "timestamp": "2022-11-21"
     },
-    "MANYAVAR": {
+    "MANALIPETC": {
         "duration": "10d",
         "ticker": {
-            "symbol": "MANYAVAR",
-            "name": "Vedant Fashions Limited"
+            "symbol": "MANALIPETC",
+            "name": "Manali Petrochemicals Limited"
         },
-        "timestamp": "2022-11-18"
+        "timestamp": "2022-11-28"
+    },
+    "MANINFRA": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "MANINFRA",
+            "name": "Man Infraconstruction Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "MARICO": {
         "duration": "10d",
@@ -509,7 +565,7 @@
             "symbol": "MARICO",
             "name": "Marico Limited"
         },
-        "timestamp": "2022-11-17"
+        "timestamp": "2022-11-28"
     },
     "MARSHALL": {
         "duration": "10d",
@@ -518,14 +574,6 @@
             "name": "Marshall Machines Limited"
         },
         "timestamp": "2022-11-21"
-    },
-    "METROBRAND": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "METROBRAND",
-            "name": "Metro Brands Limited"
-        },
-        "timestamp": "2022-11-15"
     },
     "MFSL": {
         "duration": "10d",
@@ -543,13 +591,13 @@
         },
         "timestamp": "2022-11-21"
     },
-    "MPHASIS": {
+    "NETWORK18": {
         "duration": "10d",
         "ticker": {
-            "symbol": "MPHASIS",
-            "name": "MphasiS Limited"
+            "symbol": "NETWORK18",
+            "name": "Network18 Media & Investments Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "NTPC": {
         "duration": "10d",
@@ -559,13 +607,13 @@
         },
         "timestamp": "2022-11-23"
     },
-    "NUVOCO": {
+    "PARADEEP": {
         "duration": "10d",
         "ticker": {
-            "symbol": "NUVOCO",
-            "name": "Nuvoco Vistas Corporation Limited"
+            "symbol": "PARADEEP",
+            "name": "Paradeep Phosphates Limited"
         },
-        "timestamp": "2022-11-18"
+        "timestamp": "2022-11-28"
     },
     "PATANJALI": {
         "duration": "10d",
@@ -573,7 +621,7 @@
             "symbol": "PATANJALI",
             "name": "Patanjali Foods Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "PAYTM": {
         "duration": "10d",
@@ -581,7 +629,7 @@
             "symbol": "PAYTM",
             "name": "One 97 Communications Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "PEARLPOLY": {
         "duration": "10d",
@@ -623,22 +671,6 @@
         },
         "timestamp": "2022-11-21"
     },
-    "RAMCOCEM": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "RAMCOCEM",
-            "name": "The Ramco Cements Limited"
-        },
-        "timestamp": "2022-11-18"
-    },
-    "RATNAMANI": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "RATNAMANI",
-            "name": "Ratnamani Metals & Tubes Limited"
-        },
-        "timestamp": "2022-11-15"
-    },
     "RELAXO": {
         "duration": "10d",
         "ticker": {
@@ -669,7 +701,7 @@
             "symbol": "SBICARD",
             "name": "SBI Cards and Payment Services Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
     },
     "SGL": {
         "duration": "10d",
@@ -678,6 +710,14 @@
             "name": "STL Global Limited"
         },
         "timestamp": "2022-11-23"
+    },
+    "SOLARINDS": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SOLARINDS",
+            "name": "Solar Industries India Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "SOMICONVEY": {
         "duration": "10d",
@@ -693,7 +733,7 @@
             "symbol": "SONACOMS",
             "name": "Sona BLW Precision Forgings Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
     },
     "SRF": {
         "duration": "10d",
@@ -701,15 +741,7 @@
             "symbol": "SRF",
             "name": "SRF Limited"
         },
-        "timestamp": "2022-11-15"
-    },
-    "SUMICHEM": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "SUMICHEM",
-            "name": "Sumitomo Chemical India Limited"
-        },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
     },
     "SUNDARMFIN": {
         "duration": "10d",
@@ -735,21 +767,37 @@
         },
         "timestamp": "2022-11-21"
     },
+    "SUTLEJTEX": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "SUTLEJTEX",
+            "name": "Sutlej Textiles and Industries Limited"
+        },
+        "timestamp": "2022-11-28"
+    },
     "TATACHEM": {
         "duration": "10d",
         "ticker": {
             "symbol": "TATACHEM",
             "name": "Tata Chemicals Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
-    "TATAELXSI": {
+    "TATAPOWER": {
         "duration": "10d",
         "ticker": {
-            "symbol": "TATAELXSI",
-            "name": "Tata Elxsi Limited"
+            "symbol": "TATAPOWER",
+            "name": "Tata Power Company Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-25"
+    },
+    "THERMAX": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "THERMAX",
+            "name": "Thermax Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "TIINDIA": {
         "duration": "10d",
@@ -757,15 +805,7 @@
             "symbol": "TIINDIA",
             "name": "Tube Investments of India Limited"
         },
-        "timestamp": "2022-11-18"
-    },
-    "TIMKEN": {
-        "duration": "10d",
-        "ticker": {
-            "symbol": "TIMKEN",
-            "name": "Timken India Limited"
-        },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "TITAN": {
         "duration": "10d",
@@ -773,7 +813,15 @@
             "symbol": "TITAN",
             "name": "Titan Company Limited"
         },
-        "timestamp": "2022-11-18"
+        "timestamp": "2022-11-28"
+    },
+    "TNPETRO": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "TNPETRO",
+            "name": "Tamilnadu PetroProducts Limited"
+        },
+        "timestamp": "2022-11-28"
     },
     "TRENT": {
         "duration": "10d",
@@ -781,7 +829,7 @@
             "symbol": "TRENT",
             "name": "Trent Limited"
         },
-        "timestamp": "2022-11-18"
+        "timestamp": "2022-11-28"
     },
     "TTKPRESTIG": {
         "duration": "10d",
@@ -799,6 +847,14 @@
         },
         "timestamp": "2022-11-21"
     },
+    "TVSMOTOR": {
+        "duration": "10d",
+        "ticker": {
+            "symbol": "TVSMOTOR",
+            "name": "TVS Motor Company Limited"
+        },
+        "timestamp": "2022-11-25"
+    },
     "VINEETLAB": {
         "duration": "10d",
         "ticker": {
@@ -813,7 +869,7 @@
             "symbol": "VOLTAS",
             "name": "Voltas Limited"
         },
-        "timestamp": "2022-11-15"
+        "timestamp": "2022-11-28"
     },
     "WORTH": {
         "duration": "10d",
