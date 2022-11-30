@@ -22,7 +22,7 @@ class TickerDataFetcher(DataFetcher):
         if cache_data is not None and len(cache_data) > 0:
              data = cache_data
         else:
-            data = self.nse.get_stock_codes()
+            data = self.nse.get_stock_codes(cached=False)
 
             try:
                 assert len(data) > 0

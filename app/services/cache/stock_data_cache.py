@@ -123,7 +123,7 @@ class StockDataCache(Cache):
                 print("diff_hours = ", diff_hours)
 
                 print(diff_hours)
-                if diff_hours >= 6 or diff.days > 1:
+                if diff_hours >= 6 or diff.days >= 1:
                     eviction_list.append(key)
                     for sub_key, sub_value in value.items():
                         if not sub_key == 'timestamp':

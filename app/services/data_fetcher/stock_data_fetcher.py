@@ -12,13 +12,19 @@ class StockDataFetcher(DataFetcher):
         self.cache_handler = StockDataHandler.instance()
 
     # @st.cache(show_spinner=True) #Using st.cache allows st to load the data once and cache it. 
-    def load_data(self, stock_data_request: StockDataViewModel, inplace=False):
+    def load_data(self, stock_data_request: StockDataViewModel, inplace=False, is_fallback = False):
         """
         takes a start and end dates, download data do some processing and returns dataframe
         """
 
         data = None
-        symbol = stock_data_request.ticker.symbol + ".NS"
+
+        exchange = '.NS'
+
+        if is_fallback:
+            exchange = '.BO'
+
+        symbol = stock_data_request.ticker.symbol + exchange
         key = stock_data_request.key
         start = stock_data_request.start
         end = stock_data_request.end
@@ -48,8 +54,12 @@ class StockDataFetcher(DataFetcher):
                 assert len(data) > 0
                 self.cache_handler.update_cache(symbol, key, data, start, end)
             except AssertionError as e:
-                print("Cannot fetch data, check spelling or time window")
-                raise AssertionError("Cannot fetch data, check spelling or time window")
+                if not is_fallback:
+                    print('Falling back to BSE exchange')
+                    return self.load_data(stock_data_request, inplace, True)
+                else:
+                    print("Cannot fetch data, check spelling or time window")
+                    raise AssertionError("Cannot fetch data, check spelling or time window")
 
 
         data.reset_index(inplace=True)
