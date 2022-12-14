@@ -10,7 +10,7 @@ from graph_utils.plot_stock import plot_macd
 from graph_utils.plot_stock import UP_COLOR, DOWN_COLOR
 
 from data_models.stock_data_view_model import StockDataViewModel
-
+from threading import current_thread
 
 class StockDataProcessor():
     """
@@ -32,6 +32,7 @@ class StockDataProcessor():
         try:
             data = self.data_fetcher.load_data(self.stock_data, inplace) 
         except Exception as e:
+            print('got exception: ', e)
             raise e
 
         data = data.dropna()
@@ -65,7 +66,7 @@ class StockDataProcessor():
         self.stock_data.data.ta.stoch(high='high', low='low', k=14, d=3, append=True)
 
     def add_indicators(self):
-        print('adding indicators to ', self.stock_data.ticker.symbol)
+        print('{:30} - adding indicators to \t {}'.format(current_thread().name, self.stock_data.ticker.symbol))
 
         self.add_macd()
         self.add_rsi()

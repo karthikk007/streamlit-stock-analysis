@@ -6,6 +6,6 @@ class StockDataViewModel():
     def __init__(self, ticker: TickerDataModel, key, start: datetime.date, end: datetime.date):
         self.ticker: TickerDataModel = ticker
         self.key = key
-        self.start = start
-        self.end = end
+        self.start = start.date()
+        self.end = end.date()
         self.data = None

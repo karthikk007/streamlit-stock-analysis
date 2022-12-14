@@ -20,7 +20,7 @@ st.set_page_config(page_title=APP_NAME, layout="wide", initial_sidebar_state="ex
 st.sidebar.title = APP_NAME
 
 app_state = AppStateCache()
-
+stockSignals = StockSignalProcessor()
 
 def app():
     if st.button('Refresh Table'):
@@ -37,7 +37,6 @@ def app():
     with st.spinner('Loading data...'):
         category = st.session_state['category_list']
 
-        stockSignals = StockSignalProcessor()
         (all_stock_list, skipped_list, fetch_list) = stockSignals.process_records(category)
 
         add_buy_signal_tab_items(stockSignals)

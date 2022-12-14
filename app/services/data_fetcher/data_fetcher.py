@@ -7,6 +7,7 @@ class DataFetcher(object):
         self.cache_handler = None
 
     def __del__(self):
-        print('................................ DataFetcher deleted...')
+        # print('................................ DataFetcher deleted...')
+        pass
 
 

@@ -8,6 +8,8 @@ import os
 import json
 import pandas as pd
 
+from threading import current_thread
+
 class StockDataCache(Cache):
     name = 'stock_data_cache'
     dir_path = 'app/services/cache/.data_cache/.{}'.format(name)
@@ -42,7 +44,7 @@ class StockDataCache(Cache):
             
 
     def update_cache(self, symbol, key, data, start: datetime, end: datetime):
-        print('[-------------------- update_cache')
+        print('{:30} - [-------------------- update_cache'.format(current_thread().name))
         path = self.get_file_path_for(symbol, key)
 
         data.to_pickle(path)
@@ -65,7 +67,7 @@ class StockDataCache(Cache):
 
 
     def save_cache(self):
-        print('[-------------------- save_cache')
+        print('{:30} - [-------------------- save_cache'.format(current_thread().name))
         cache_file = self.absolute_file_path()
 
         self.cache = dict(sorted(self.cache.items()))
